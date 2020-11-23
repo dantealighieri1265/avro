@@ -1,0 +1,10 @@
+language: java
+jdk: 
+  - openjdk11
+
+addons:
+ sonarcloud:
+  organization: dantealighieri1265
+  token: c3449e8a83372914dcbd62fa420f14c108dcb64a
+script: 
+  - mvn clean verify sonar:sonar 
