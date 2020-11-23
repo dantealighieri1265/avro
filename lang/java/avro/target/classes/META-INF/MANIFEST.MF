@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1605897379739
+Build-Jdk: 11.0.9.1
+Built-By: giuseppe
+Bundle-Description: Avro core components
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache Avro
+Bundle-SymbolicName: avro
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 1.11.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.avro;version="1.11.0.SNAPSHOT";uses:="org.apa
+ che.avro.generic",org.apache.avro.data;version="1.11.0.SNAPSHOT";uses:=
+ "org.apache.avro,org.apache.avro.generic,org.apache.avro.io",org.apache
+ .avro.file;version="1.11.0.SNAPSHOT";uses:="org.apache.avro,org.apache.
+ avro.io",org.apache.avro.generic;version="1.11.0.SNAPSHOT";uses:="org.a
+ pache.avro,org.apache.avro.data,org.apache.avro.io",org.apache.avro.io;
+ version="1.11.0.SNAPSHOT";uses:="org.apache.avro,org.apache.avro.generi
+ c,org.apache.avro.io.parsing,org.apache.avro.util",org.apache.avro.io.p
+ arsing;version="1.11.0.SNAPSHOT";uses:="com.fasterxml.jackson.databind,
+ org.apache.avro,org.apache.avro.io",org.apache.avro.message;version="1.
+ 11.0.SNAPSHOT";uses:="org.apache.avro,org.apache.avro.generic",org.apac
+ he.avro.reflect;version="1.11.0.SNAPSHOT";uses:="org.apache.avro,org.ap
+ ache.avro.io,org.apache.avro.specific",org.apache.avro.specific;version
+ ="1.11.0.SNAPSHOT";uses:="org.apache.avro,org.apache.avro.data,org.apac
+ he.avro.generic,org.apache.avro.io",org.apache.avro.util;version="1.11.
+ 0.SNAPSHOT";uses:="org.apache.avro",org.apache.avro.util.internal;versi
+ on="1.11.0.SNAPSHOT";uses:="com.fasterxml.jackson.core,com.fasterxml.ja
+ ckson.databind,org.apache.avro,org.apache.avro.io"
+Import-Package: com.fasterxml.jackson.annotation;version="[2.11,3)",com.
+ fasterxml.jackson.core;version="[2.11,3)",com.fasterxml.jackson.core.io
+ ;version="[2.11,3)",com.fasterxml.jackson.core.util;version="[2.11,3)",
+ com.fasterxml.jackson.databind;version="[2.11,3)",com.fasterxml.jackson
+ .databind.node;version="[2.11,3)",com.fasterxml.jackson.databind.util;v
+ ersion="[2.11,3)",org.xerial.snappy;resolution:=optional;version="[1.1,
+ 2)",sun.misc;resolution:=optional,com.github.luben.zstd;version="[1.4,2
+ )";resolution:=optional,org.apache.commons.compress.compressors.bzip2;v
+ ersion="[1.20,2)",org.apache.commons.compress.compressors.xz;version="[
+ 1.20,2)",org.apache.commons.compress.utils;version="[1.20,2)",org.slf4j
+ ;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-4.1.0.201810181252

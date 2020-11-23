@@ -1,0 +1,7 @@
+org/apache/avro/perf/Perf.class
+org/apache/avro/perf/test/BasicState$1.class
+org/apache/avro/perf/test/BasicArrayState.class
+org/apache/avro/perf/test/BigRecord.class
+org/apache/avro/perf/test/BasicState.class
+org/apache/avro/perf/test/BasicRecord.class
+org/apache/avro/perf/test/BasicState$NullOutputStream.class

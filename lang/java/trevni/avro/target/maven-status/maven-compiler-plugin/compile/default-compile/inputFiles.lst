@@ -1,0 +1,16 @@
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyOutputFormat.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyRecordReader.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniRecordWriterBase.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroColumnReader.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroTrevniInputFormat.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroColumnator.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyRecordWriter.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroColumnWriter.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/AvroTrevniOutputFormat.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyValueRecordReader.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyValueOutputFormat.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniRecordReaderBase.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyValueInputFormat.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyValueRecordWriter.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/HadoopInput.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/trevni/avro/src/main/java/org/apache/trevni/avro/mapreduce/AvroTrevniKeyInputFormat.java

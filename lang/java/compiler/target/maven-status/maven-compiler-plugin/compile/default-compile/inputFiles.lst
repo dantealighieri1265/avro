@@ -1,0 +1,16 @@
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/target/generated-sources/javacc/org/apache/avro/compiler/idl/Idl.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/target/generated-sources/javacc/org/apache/avro/compiler/idl/JavaCharStream.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/target/generated-sources/javacc/org/apache/avro/compiler/idl/Token.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/specific/SchemaTask.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/idl/SchemaResolver.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/target/generated-sources/javacc/org/apache/avro/compiler/idl/ParseException.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/target/generated-sources/javacc/org/apache/avro/compiler/idl/IdlConstants.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/schema/Schemas.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/specific/SpecificCompiler.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/schema/SchemaVisitor.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/specific/ProtocolTask.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/idl/ResolvingVisitor.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/target/generated-sources/javacc/org/apache/avro/compiler/idl/TokenMgrError.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/target/generated-sources/javacc/org/apache/avro/compiler/idl/IdlTokenManager.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/schema/CloningVisitor.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/compiler/src/main/java/org/apache/avro/compiler/schema/SchemaVisitorAction.java

@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.apache.avro.ipc.jetty
+Bnd-LastModified: 1605897432211
+Build-Jdk: 11.0.9.1
+Built-By: giuseppe
+Bundle-Description: Avro inter-process communication components using Je
+ tty
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache Avro IPC Jetty
+Bundle-SymbolicName: avro-ipc-jetty
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 1.11.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.avro.ipc.jetty;version="1.11.0.SNAPSHOT";uses
+ :="org.apache.avro.ipc,org.apache.avro.ipc.stats,org.eclipse.jetty.serv
+ er,org.eclipse.jetty.servlet,org.eclipse.jetty.util.resource"
+Implementation-Title: Apache Avro IPC Jetty
+Implementation-URL: https://avro.apache.org
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache.avro
+Implementation-Version: 1.11.0-SNAPSHOT
+Import-Package: org.apache.avro;version="1.11.0.SNAPSHOT",org.apache.avr
+ o.ipc;version="1.11.0.SNAPSHOT",org.apache.avro.ipc.stats;version="1.11
+ .0.SNAPSHOT",javax.servlet;version="[4.0,5)",org.eclipse.jetty.server;v
+ ersion="[9.4,10)",org.eclipse.jetty.servlet;version="[9.4,10)",org.ecli
+ pse.jetty.util.resource;version="[9.4,10)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Specification-Title: Apache Avro IPC Jetty
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 1.11.0-SNAPSHOT
+Tool: Bnd-4.1.0.201810181252

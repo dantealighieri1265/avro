@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.apache.avro.grpc
+Bnd-LastModified: 1605897446902
+Build-Jdk: 11.0.9.1
+Built-By: giuseppe
+Bundle-Description: Avro IDL based RPC and serialization over gRPC
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache Avro gRPC
+Bundle-SymbolicName: avro-grpc
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 1.11.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.avro.grpc;version="1.11.0.SNAPSHOT";uses:="io
+ .grpc,org.apache.avro"
+Implementation-Title: Apache Avro gRPC
+Implementation-URL: https://avro.apache.org/avro-grpc
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache.avro
+Implementation-Version: 1.11.0-SNAPSHOT
+Import-Package: org.apache.avro;version="1.11.0.SNAPSHOT",org.apache.avr
+ o.generic;version="1.11.0.SNAPSHOT",org.apache.avro.io;version="1.11.0.
+ SNAPSHOT",org.apache.avro.ipc;version="1.11.0.SNAPSHOT",org.apache.avro
+ .specific;version="1.11.0.SNAPSHOT",org.apache.avro.util;version="1.11.
+ 0.SNAPSHOT",io.grpc,io.grpc.stub
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Specification-Title: Apache Avro gRPC
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 1.11.0-SNAPSHOT
+Tool: Bnd-4.1.0.201810181252

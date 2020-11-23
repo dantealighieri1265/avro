@@ -1,0 +1,14 @@
+org/apache/avro/grpc/AvroGrpcClient$ServiceInvocationHandler$CallbackToResponseStreamObserverAdpater.class
+org/apache/avro/grpc/AvroGrpcUtils.class
+org/apache/avro/grpc/AvroGrpcServer$UnaryMethodHandler.class
+org/apache/avro/grpc/AvroRequestMarshaller$AvroRequestInputStream.class
+org/apache/avro/grpc/AvroResponseMarshaller$AvroResponseInputStream.class
+org/apache/avro/grpc/ServiceDescriptor.class
+org/apache/avro/grpc/AvroRequestMarshaller.class
+org/apache/avro/grpc/AvroInputStream$CountingOutputStream.class
+org/apache/avro/grpc/AvroGrpcClient$ServiceInvocationHandler.class
+org/apache/avro/grpc/AvroGrpcClient.class
+org/apache/avro/grpc/AvroInputStream.class
+org/apache/avro/grpc/AvroGrpcServer.class
+org/apache/avro/grpc/AvroResponseMarshaller.class
+org/apache/avro/grpc/AvroGrpcServer$OneWayUnaryMethodHandler.class

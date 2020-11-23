@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.apache.avro.compiler
+Bnd-LastModified: 1605897425828
+Build-Jdk: 11.0.9.1
+Built-By: giuseppe
+Bundle-Description: Compilers for Avro IDL and Avro Specific Java API
+Bundle-DocURL: https://www.apache.org/
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache Avro Compiler
+Bundle-SymbolicName: avro-compiler
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 1.11.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.apache.avro.compiler.idl;version="1.11.0.SNAPSHOT";u
+ ses:="org.apache.avro,org.apache.avro.compiler.schema",org.apache.avro.
+ compiler.schema;version="1.11.0.SNAPSHOT";uses:="org.apache.avro",org.a
+ pache.avro.compiler.specific;version="1.11.0.SNAPSHOT";uses:="org.apach
+ e.avro,org.apache.avro.generic,org.apache.tools.ant,org.apache.tools.an
+ t.types",org.apache.avro.compiler.specific.templates.java.classic;versi
+ on="1.11.0.SNAPSHOT"
+Implementation-Title: Apache Avro Compiler
+Implementation-URL: https://avro.apache.org
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache.avro
+Implementation-Version: 1.11.0-SNAPSHOT
+Import-Package: org.apache.avro;version="1.11.0.SNAPSHOT",org.apache.avr
+ o.data;version="1.11.0.SNAPSHOT",org.apache.avro.generic;version="1.11.
+ 0.SNAPSHOT",org.apache.avro.specific;version="1.11.0.SNAPSHOT",org.apac
+ he.avro.util.internal;version="1.11.0.SNAPSHOT",org.apache.commons.lang
+ 3;version="[3.9,4)",com.fasterxml.jackson.databind;version="[2.11,3)",c
+ om.fasterxml.jackson.databind.node;version="[2.11,3)",org.apache.tools.
+ ant,org.apache.tools.ant.types,org.apache.velocity;version="[2.2,3)",or
+ g.apache.velocity.app;version="[2.2,3)",org.apache.velocity.context;ver
+ sion="[2.2,3)",org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Specification-Title: Apache Avro Compiler
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 1.11.0-SNAPSHOT
+Tool: Bnd-4.1.0.201810181252

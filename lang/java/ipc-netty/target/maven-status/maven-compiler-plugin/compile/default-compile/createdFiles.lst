@@ -1,0 +1,13 @@
+org/apache/avro/ipc/netty/NettyServer.class
+org/apache/avro/ipc/netty/NettyTransportCodec$NettyFrameDecoder.class
+org/apache/avro/ipc/netty/NettyTransportCodec$NettyDataPack.class
+org/apache/avro/ipc/netty/NettyTransceiver$NettyClientAvroHandler.class
+org/apache/avro/ipc/netty/NettyTransceiver.class
+org/apache/avro/ipc/netty/NettyTransceiver$1.class
+org/apache/avro/ipc/netty/NettyTransceiver$WriteFutureListener.class
+org/apache/avro/ipc/netty/NettyServer$1.class
+org/apache/avro/ipc/netty/NettyTransportCodec.class
+org/apache/avro/ipc/netty/NettyServer$NettyServerAvroHandler$1.class
+org/apache/avro/ipc/netty/NettyServer$NettyServerAvroHandler.class
+org/apache/avro/ipc/netty/NettyTransportCodec$NettyFrameEncoder.class
+org/apache/avro/ipc/netty/NettyTransceiver$NettyTransceiverThreadFactory.class

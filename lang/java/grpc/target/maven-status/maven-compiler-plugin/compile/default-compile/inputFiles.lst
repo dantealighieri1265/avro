@@ -1,0 +1,7 @@
+/home/giuseppe/eclipse-workspace/avro/lang/java/grpc/src/main/java/org/apache/avro/grpc/AvroRequestMarshaller.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/grpc/src/main/java/org/apache/avro/grpc/AvroGrpcClient.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/grpc/src/main/java/org/apache/avro/grpc/AvroGrpcUtils.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/grpc/src/main/java/org/apache/avro/grpc/ServiceDescriptor.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/grpc/src/main/java/org/apache/avro/grpc/AvroInputStream.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/grpc/src/main/java/org/apache/avro/grpc/AvroResponseMarshaller.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/grpc/src/main/java/org/apache/avro/grpc/AvroGrpcServer.java

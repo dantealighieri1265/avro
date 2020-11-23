@@ -1,0 +1,9 @@
+org/apache/avro/protobuf/ProtoConversions$1.class
+org/apache/avro/protobuf/ProtobufDatumWriter.class
+org/apache/avro/protobuf/ProtoConversions$TimestampMicrosConversion.class
+org/apache/avro/protobuf/ProtoConversions$TimestampMillisConversion.class
+org/apache/avro/protobuf/ProtoConversions.class
+org/apache/avro/protobuf/ProtoConversions$TimestampPrecise.class
+org/apache/avro/protobuf/ProtobufDatumReader.class
+org/apache/avro/protobuf/ProtobufData$1.class
+org/apache/avro/protobuf/ProtobufData.class

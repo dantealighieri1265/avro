@@ -1,0 +1,3 @@
+org/apache/avro/thrift/ThriftDatumReader.class
+org/apache/avro/thrift/ThriftDatumWriter.class
+org/apache/avro/thrift/ThriftData.class
