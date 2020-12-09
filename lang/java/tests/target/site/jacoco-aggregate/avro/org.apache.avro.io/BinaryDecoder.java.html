@@ -50,7 +50,7 @@ public class BinaryDecoder extends Decoder {
    */
   private static final long MAX_ARRAY_SIZE = (long) Integer.MAX_VALUE - 8L;
 
-<span class="pc" id="L53">  private ByteSource source = null;</span>
+<span class="nc" id="L53">  private ByteSource source = null;</span>
   // we keep the buffer and its state variables in this class and not in a
   // container class for performance reasons. This improves performance
   // over a container object by about 5% to 15%
@@ -58,17 +58,17 @@ public class BinaryDecoder extends Decoder {
   // and keep a private FastBuffer member here. This simplifies the
   // &quot;detach source&quot; code and source access to the buffer, but
   // hurts performance.
-<span class="pc" id="L61">  private byte[] buf = null;</span>
-<span class="pc" id="L62">  private int minPos = 0;</span>
-<span class="pc" id="L63">  private int pos = 0;</span>
-<span class="pc" id="L64">  private int limit = 0;</span>
+<span class="nc" id="L61">  private byte[] buf = null;</span>
+<span class="nc" id="L62">  private int minPos = 0;</span>
+<span class="nc" id="L63">  private int pos = 0;</span>
+<span class="nc" id="L64">  private int limit = 0;</span>
 
   byte[] getBuf() {
-<span class="fc" id="L67">    return buf;</span>
+<span class="nc" id="L67">    return buf;</span>
   }
 
   int getPos() {
-<span class="fc" id="L71">    return pos;</span>
+<span class="nc" id="L71">    return pos;</span>
   }
 
   int getLimit() {
@@ -76,14 +76,14 @@ public class BinaryDecoder extends Decoder {
   }
 
   void setBuf(byte[] buf, int pos, int len) {
-<span class="fc" id="L79">    this.buf = buf;</span>
-<span class="fc" id="L80">    this.pos = pos;</span>
-<span class="fc" id="L81">    this.limit = pos + len;</span>
-<span class="fc" id="L82">  }</span>
+<span class="nc" id="L79">    this.buf = buf;</span>
+<span class="nc" id="L80">    this.pos = pos;</span>
+<span class="nc" id="L81">    this.limit = pos + len;</span>
+<span class="nc" id="L82">  }</span>
 
   void clearBuf() {
-<span class="fc" id="L85">    this.buf = null;</span>
-<span class="fc" id="L86">  }</span>
+<span class="nc" id="L85">    this.buf = null;</span>
+<span class="nc" id="L86">  }</span>
 
   /** protected constructor for child classes */
 <span class="nc" id="L89">  protected BinaryDecoder() {</span>
@@ -95,9 +95,9 @@ public class BinaryDecoder extends Decoder {
 <span class="nc" id="L95">  }</span>
 
   BinaryDecoder(byte[] data, int offset, int length) {
-<span class="fc" id="L98">    super();</span>
-<span class="fc" id="L99">    configure(data, offset, length);</span>
-<span class="fc" id="L100">  }</span>
+<span class="nc" id="L98">    super();</span>
+<span class="nc" id="L99">    configure(data, offset, length);</span>
+<span class="nc" id="L100">  }</span>
 
   BinaryDecoder configure(InputStream in, int bufferSize) {
 <span class="nc" id="L103">    configureSource(bufferSize, new InputStreamByteSource(in));</span>
@@ -105,8 +105,8 @@ public class BinaryDecoder extends Decoder {
   }
 
   BinaryDecoder configure(byte[] data, int offset, int length) {
-<span class="fc" id="L108">    configureSource(DecoderFactory.DEFAULT_BUFFER_SIZE, new ByteArrayByteSource(data, offset, length));</span>
-<span class="fc" id="L109">    return this;</span>
+<span class="nc" id="L108">    configureSource(DecoderFactory.DEFAULT_BUFFER_SIZE, new ByteArrayByteSource(data, offset, length));</span>
+<span class="nc" id="L109">    return this;</span>
   }
 
   /**
@@ -120,12 +120,12 @@ public class BinaryDecoder extends Decoder {
    * it with size bufferSize.
    */
   private void configureSource(int bufferSize, ByteSource source) {
-<span class="pc bpc" id="L123" title="1 of 2 branches missed.">    if (null != this.source) {</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">    if (null != this.source) {</span>
 <span class="nc" id="L124">      this.source.detach();</span>
     }
-<span class="fc" id="L126">    source.attach(bufferSize, this);</span>
-<span class="fc" id="L127">    this.source = source;</span>
-<span class="fc" id="L128">  }</span>
+<span class="nc" id="L126">    source.attach(bufferSize, this);</span>
+<span class="nc" id="L127">    this.source = source;</span>
+<span class="nc" id="L128">  }</span>
 
   @Override
   public void readNull() throws IOException {
@@ -134,68 +134,68 @@ public class BinaryDecoder extends Decoder {
   @Override
   public boolean readBoolean() throws IOException {
     // inlined, shorter version of ensureBounds
-<span class="pc bpc" id="L137" title="1 of 2 branches missed.">    if (limit == pos) {</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">    if (limit == pos) {</span>
 <span class="nc" id="L138">      limit = source.tryReadRaw(buf, 0, buf.length);</span>
 <span class="nc" id="L139">      pos = 0;</span>
 <span class="nc bnc" id="L140" title="All 2 branches missed.">      if (limit == 0) {</span>
 <span class="nc" id="L141">        throw new EOFException();</span>
       }
     }
-<span class="fc" id="L144">    int n = buf[pos++] &amp; 0xff;</span>
-<span class="fc bfc" id="L145" title="All 2 branches covered.">    return n == 1;</span>
+<span class="nc" id="L144">    int n = buf[pos++] &amp; 0xff;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">    return n == 1;</span>
   }
 
   @Override
   public int readInt() throws IOException {
-<span class="fc" id="L150">    ensureBounds(5); // won't throw index out of bounds</span>
-<span class="fc" id="L151">    int len = 1;</span>
-<span class="fc" id="L152">    int b = buf[pos] &amp; 0xff;</span>
-<span class="fc" id="L153">    int n = b &amp; 0x7f;</span>
-<span class="fc bfc" id="L154" title="All 2 branches covered.">    if (b &gt; 0x7f) {</span>
-<span class="fc" id="L155">      b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L156">      n ^= (b &amp; 0x7f) &lt;&lt; 7;</span>
-<span class="fc bfc" id="L157" title="All 2 branches covered.">      if (b &gt; 0x7f) {</span>
-<span class="fc" id="L158">        b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L159">        n ^= (b &amp; 0x7f) &lt;&lt; 14;</span>
-<span class="pc bpc" id="L160" title="1 of 2 branches missed.">        if (b &gt; 0x7f) {</span>
-<span class="fc" id="L161">          b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L162">          n ^= (b &amp; 0x7f) &lt;&lt; 21;</span>
-<span class="pc bpc" id="L163" title="1 of 2 branches missed.">          if (b &gt; 0x7f) {</span>
-<span class="fc" id="L164">            b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L165">            n ^= (b &amp; 0x7f) &lt;&lt; 28;</span>
-<span class="fc bfc" id="L166" title="All 2 branches covered.">            if (b &gt; 0x7f) {</span>
-<span class="fc" id="L167">              throw new InvalidNumberEncodingException(&quot;Invalid int encoding&quot;);</span>
+<span class="nc" id="L150">    ensureBounds(5); // won't throw index out of bounds</span>
+<span class="nc" id="L151">    int len = 1;</span>
+<span class="nc" id="L152">    int b = buf[pos] &amp; 0xff;</span>
+<span class="nc" id="L153">    int n = b &amp; 0x7f;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">    if (b &gt; 0x7f) {</span>
+<span class="nc" id="L155">      b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L156">      n ^= (b &amp; 0x7f) &lt;&lt; 7;</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">      if (b &gt; 0x7f) {</span>
+<span class="nc" id="L158">        b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L159">        n ^= (b &amp; 0x7f) &lt;&lt; 14;</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        if (b &gt; 0x7f) {</span>
+<span class="nc" id="L161">          b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L162">          n ^= (b &amp; 0x7f) &lt;&lt; 21;</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">          if (b &gt; 0x7f) {</span>
+<span class="nc" id="L164">            b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L165">            n ^= (b &amp; 0x7f) &lt;&lt; 28;</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (b &gt; 0x7f) {</span>
+<span class="nc" id="L167">              throw new InvalidNumberEncodingException(&quot;Invalid int encoding&quot;);</span>
             }
           }
         }
       }
     }
-<span class="fc" id="L173">    pos += len;</span>
-<span class="pc bpc" id="L174" title="1 of 2 branches missed.">    if (pos &gt; limit) {</span>
+<span class="nc" id="L173">    pos += len;</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">    if (pos &gt; limit) {</span>
 <span class="nc" id="L175">      throw new EOFException();</span>
     }
-<span class="fc" id="L177">    return (n &gt;&gt;&gt; 1) ^ -(n &amp; 1); // back to two's-complement</span>
+<span class="nc" id="L177">    return (n &gt;&gt;&gt; 1) ^ -(n &amp; 1); // back to two's-complement</span>
   }
 
   @Override
   public long readLong() throws IOException {
-<span class="fc" id="L182">    ensureBounds(10);</span>
-<span class="fc" id="L183">    int b = buf[pos++] &amp; 0xff;</span>
-<span class="fc" id="L184">    int n = b &amp; 0x7f;</span>
+<span class="nc" id="L182">    ensureBounds(10);</span>
+<span class="nc" id="L183">    int b = buf[pos++] &amp; 0xff;</span>
+<span class="nc" id="L184">    int n = b &amp; 0x7f;</span>
     long l;
-<span class="fc bfc" id="L186" title="All 2 branches covered.">    if (b &gt; 0x7f) {</span>
-<span class="fc" id="L187">      b = buf[pos++] &amp; 0xff;</span>
-<span class="fc" id="L188">      n ^= (b &amp; 0x7f) &lt;&lt; 7;</span>
-<span class="pc bpc" id="L189" title="1 of 2 branches missed.">      if (b &gt; 0x7f) {</span>
-<span class="fc" id="L190">        b = buf[pos++] &amp; 0xff;</span>
-<span class="fc" id="L191">        n ^= (b &amp; 0x7f) &lt;&lt; 14;</span>
-<span class="pc bpc" id="L192" title="1 of 2 branches missed.">        if (b &gt; 0x7f) {</span>
-<span class="fc" id="L193">          b = buf[pos++] &amp; 0xff;</span>
-<span class="fc" id="L194">          n ^= (b &amp; 0x7f) &lt;&lt; 21;</span>
-<span class="pc bpc" id="L195" title="1 of 2 branches missed.">          if (b &gt; 0x7f) {</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">    if (b &gt; 0x7f) {</span>
+<span class="nc" id="L187">      b = buf[pos++] &amp; 0xff;</span>
+<span class="nc" id="L188">      n ^= (b &amp; 0x7f) &lt;&lt; 7;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">      if (b &gt; 0x7f) {</span>
+<span class="nc" id="L190">        b = buf[pos++] &amp; 0xff;</span>
+<span class="nc" id="L191">        n ^= (b &amp; 0x7f) &lt;&lt; 14;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        if (b &gt; 0x7f) {</span>
+<span class="nc" id="L193">          b = buf[pos++] &amp; 0xff;</span>
+<span class="nc" id="L194">          n ^= (b &amp; 0x7f) &lt;&lt; 21;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">          if (b &gt; 0x7f) {</span>
             // only the low 28 bits can be set, so this won't carry
             // the sign bit to the long
-<span class="fc" id="L198">            l = innerLongDecode((long) n);</span>
+<span class="nc" id="L198">            l = innerLongDecode((long) n);</span>
           } else {
 <span class="nc" id="L200">            l = n;</span>
           }
@@ -206,36 +206,36 @@ public class BinaryDecoder extends Decoder {
 <span class="nc" id="L206">        l = n;</span>
       }
     } else {
-<span class="fc" id="L209">      l = n;</span>
+<span class="nc" id="L209">      l = n;</span>
     }
-<span class="pc bpc" id="L211" title="1 of 2 branches missed.">    if (pos &gt; limit) {</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">    if (pos &gt; limit) {</span>
 <span class="nc" id="L212">      throw new EOFException();</span>
     }
-<span class="fc" id="L214">    return (l &gt;&gt;&gt; 1) ^ -(l &amp; 1); // back to two's-complement</span>
+<span class="nc" id="L214">    return (l &gt;&gt;&gt; 1) ^ -(l &amp; 1); // back to two's-complement</span>
   }
 
   // splitting readLong up makes it faster because of the JVM does more
   // optimizations on small methods
   private long innerLongDecode(long l) throws IOException {
-<span class="fc" id="L220">    int len = 1;</span>
-<span class="fc" id="L221">    int b = buf[pos] &amp; 0xff;</span>
-<span class="fc" id="L222">    l ^= (b &amp; 0x7fL) &lt;&lt; 28;</span>
-<span class="fc bfc" id="L223" title="All 2 branches covered.">    if (b &gt; 0x7f) {</span>
-<span class="fc" id="L224">      b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L225">      l ^= (b &amp; 0x7fL) &lt;&lt; 35;</span>
-<span class="pc bpc" id="L226" title="1 of 2 branches missed.">      if (b &gt; 0x7f) {</span>
-<span class="fc" id="L227">        b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L228">        l ^= (b &amp; 0x7fL) &lt;&lt; 42;</span>
-<span class="pc bpc" id="L229" title="1 of 2 branches missed.">        if (b &gt; 0x7f) {</span>
-<span class="fc" id="L230">          b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L231">          l ^= (b &amp; 0x7fL) &lt;&lt; 49;</span>
-<span class="fc bfc" id="L232" title="All 2 branches covered.">          if (b &gt; 0x7f) {</span>
-<span class="fc" id="L233">            b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L234">            l ^= (b &amp; 0x7fL) &lt;&lt; 56;</span>
-<span class="pc bpc" id="L235" title="1 of 2 branches missed.">            if (b &gt; 0x7f) {</span>
-<span class="fc" id="L236">              b = buf[pos + len++] &amp; 0xff;</span>
-<span class="fc" id="L237">              l ^= (b &amp; 0x7fL) &lt;&lt; 63;</span>
-<span class="pc bpc" id="L238" title="1 of 2 branches missed.">              if (b &gt; 0x7f) {</span>
+<span class="nc" id="L220">    int len = 1;</span>
+<span class="nc" id="L221">    int b = buf[pos] &amp; 0xff;</span>
+<span class="nc" id="L222">    l ^= (b &amp; 0x7fL) &lt;&lt; 28;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">    if (b &gt; 0x7f) {</span>
+<span class="nc" id="L224">      b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L225">      l ^= (b &amp; 0x7fL) &lt;&lt; 35;</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">      if (b &gt; 0x7f) {</span>
+<span class="nc" id="L227">        b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L228">        l ^= (b &amp; 0x7fL) &lt;&lt; 42;</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">        if (b &gt; 0x7f) {</span>
+<span class="nc" id="L230">          b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L231">          l ^= (b &amp; 0x7fL) &lt;&lt; 49;</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">          if (b &gt; 0x7f) {</span>
+<span class="nc" id="L233">            b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L234">            l ^= (b &amp; 0x7fL) &lt;&lt; 56;</span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (b &gt; 0x7f) {</span>
+<span class="nc" id="L236">              b = buf[pos + len++] &amp; 0xff;</span>
+<span class="nc" id="L237">              l ^= (b &amp; 0x7fL) &lt;&lt; 63;</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">              if (b &gt; 0x7f) {</span>
 <span class="nc" id="L239">                throw new InvalidNumberEncodingException(&quot;Invalid long encoding&quot;);</span>
               }
             }
@@ -243,36 +243,36 @@ public class BinaryDecoder extends Decoder {
         }
       }
     }
-<span class="fc" id="L246">    pos += len;</span>
-<span class="fc" id="L247">    return l;</span>
+<span class="nc" id="L246">    pos += len;</span>
+<span class="nc" id="L247">    return l;</span>
   }
 
   @Override
   public float readFloat() throws IOException {
-<span class="fc" id="L252">    ensureBounds(4);</span>
-<span class="fc" id="L253">    int len = 1;</span>
-<span class="fc" id="L254">    int n = (buf[pos] &amp; 0xff) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 8) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 16)</span>
+<span class="nc" id="L252">    ensureBounds(4);</span>
+<span class="nc" id="L253">    int len = 1;</span>
+<span class="nc" id="L254">    int n = (buf[pos] &amp; 0xff) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 8) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 16)</span>
         | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 24);
-<span class="pc bpc" id="L256" title="1 of 2 branches missed.">    if ((pos + 4) &gt; limit) {</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">    if ((pos + 4) &gt; limit) {</span>
 <span class="nc" id="L257">      throw new EOFException();</span>
     }
-<span class="fc" id="L259">    pos += 4;</span>
-<span class="fc" id="L260">    return Float.intBitsToFloat(n);</span>
+<span class="nc" id="L259">    pos += 4;</span>
+<span class="nc" id="L260">    return Float.intBitsToFloat(n);</span>
   }
 
   @Override
   public double readDouble() throws IOException {
-<span class="fc" id="L265">    ensureBounds(8);</span>
-<span class="fc" id="L266">    int len = 1;</span>
-<span class="fc" id="L267">    int n1 = (buf[pos] &amp; 0xff) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 8) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 16)</span>
+<span class="nc" id="L265">    ensureBounds(8);</span>
+<span class="nc" id="L266">    int len = 1;</span>
+<span class="nc" id="L267">    int n1 = (buf[pos] &amp; 0xff) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 8) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 16)</span>
         | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 24);
-<span class="fc" id="L269">    int n2 = (buf[pos + len++] &amp; 0xff) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 8) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 16)</span>
+<span class="nc" id="L269">    int n2 = (buf[pos + len++] &amp; 0xff) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 8) | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 16)</span>
         | ((buf[pos + len++] &amp; 0xff) &lt;&lt; 24);
-<span class="pc bpc" id="L271" title="1 of 2 branches missed.">    if ((pos + 8) &gt; limit) {</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">    if ((pos + 8) &gt; limit) {</span>
 <span class="nc" id="L272">      throw new EOFException();</span>
     }
-<span class="fc" id="L274">    pos += 8;</span>
-<span class="fc" id="L275">    return Double.longBitsToDouble((((long) n1) &amp; 0xffffffffL) | (((long) n2) &lt;&lt; 32));</span>
+<span class="nc" id="L274">    pos += 8;</span>
+<span class="nc" id="L275">    return Double.longBitsToDouble((((long) n1) &amp; 0xffffffffL) | (((long) n2) &lt;&lt; 32));</span>
   }
 
   @Override
@@ -292,7 +292,7 @@ public class BinaryDecoder extends Decoder {
 <span class="nc" id="L292">    return result;</span>
   }
 
-<span class="pc" id="L295">  private final Utf8 scratchUtf8 = new Utf8();</span>
+<span class="nc" id="L295">  private final Utf8 scratchUtf8 = new Utf8();</span>
 
   @Override
   public String readString() throws IOException {
@@ -331,8 +331,8 @@ public class BinaryDecoder extends Decoder {
 
   @Override
   public void skipFixed(int length) throws IOException {
-<span class="fc" id="L334">    doSkipBytes(length);</span>
-<span class="fc" id="L335">  }</span>
+<span class="nc" id="L334">    doSkipBytes(length);</span>
+<span class="nc" id="L335">  }</span>
 
   @Override
   public int readEnum() throws IOException {
@@ -340,15 +340,15 @@ public class BinaryDecoder extends Decoder {
   }
 
   protected void doSkipBytes(long length) throws IOException {
-<span class="fc" id="L343">    int remaining = limit - pos;</span>
-<span class="pc bpc" id="L344" title="1 of 2 branches missed.">    if (length &lt;= remaining) {</span>
-<span class="fc" id="L345">      pos = (int) (pos + length);</span>
+<span class="nc" id="L343">    int remaining = limit - pos;</span>
+<span class="nc bnc" id="L344" title="All 2 branches missed.">    if (length &lt;= remaining) {</span>
+<span class="nc" id="L345">      pos = (int) (pos + length);</span>
     } else {
 <span class="nc" id="L347">      limit = pos = 0;</span>
 <span class="nc" id="L348">      length -= remaining;</span>
 <span class="nc" id="L349">      source.skipSourceBytes(length);</span>
     }
-<span class="fc" id="L351">  }</span>
+<span class="nc" id="L351">  }</span>
 
   /**
    * Reads &lt;tt&gt;length&lt;/tt&gt; bytes into &lt;tt&gt;bytes&lt;/tt&gt; starting at &lt;tt&gt;start&lt;/tt&gt;.
@@ -502,14 +502,14 @@ public class BinaryDecoder extends Decoder {
    * num must be less than the buffer size and greater than 0
    */
   private void ensureBounds(int num) throws IOException {
-<span class="fc" id="L505">    int remaining = limit - pos;</span>
-<span class="fc bfc" id="L506" title="All 2 branches covered.">    if (remaining &lt; num) {</span>
+<span class="nc" id="L505">    int remaining = limit - pos;</span>
+<span class="nc bnc" id="L506" title="All 2 branches missed.">    if (remaining &lt; num) {</span>
       // move remaining to front
-<span class="fc" id="L508">      source.compactAndFill(buf, pos, minPos, remaining);</span>
-<span class="fc bfc" id="L509" title="All 2 branches covered.">      if (pos &gt;= limit)</span>
-<span class="fc" id="L510">        throw new EOFException();</span>
+<span class="nc" id="L508">      source.compactAndFill(buf, pos, minPos, remaining);</span>
+<span class="nc bnc" id="L509" title="All 2 branches missed.">      if (pos &gt;= limit)</span>
+<span class="nc" id="L510">        throw new EOFException();</span>
     }
-<span class="fc" id="L512">  }</span>
+<span class="nc" id="L512">  }</span>
 
   /**
    * Returns an {@link java.io.InputStream} that is aware of any buffering that
@@ -539,11 +539,11 @@ public class BinaryDecoder extends Decoder {
     private byte[] buf;
     private int pos;
     private int limit;
-<span class="fc" id="L542">    boolean detached = false;</span>
+<span class="nc" id="L542">    boolean detached = false;</span>
 
-<span class="fc" id="L544">    private BufferAccessor(BinaryDecoder decoder) {</span>
-<span class="fc" id="L545">      this.decoder = decoder;</span>
-<span class="fc" id="L546">    }</span>
+<span class="nc" id="L544">    private BufferAccessor(BinaryDecoder decoder) {</span>
+<span class="nc" id="L545">      this.decoder = decoder;</span>
+<span class="nc" id="L546">    }</span>
 
     void detach() {
 <span class="nc" id="L549">      this.buf = decoder.buf;</span>
@@ -588,17 +588,17 @@ public class BinaryDecoder extends Decoder {
 <span class="nc" id="L588">    }</span>
 
     void setBuf(byte[] buf, int offset, int length) {
-<span class="pc bpc" id="L591" title="1 of 2 branches missed.">      if (detached) {</span>
+<span class="nc bnc" id="L591" title="All 2 branches missed.">      if (detached) {</span>
 <span class="nc" id="L592">        this.buf = buf;</span>
 <span class="nc" id="L593">        this.limit = offset + length;</span>
 <span class="nc" id="L594">        this.pos = offset;</span>
       } else {
-<span class="fc" id="L596">        decoder.buf = buf;</span>
-<span class="fc" id="L597">        decoder.limit = offset + length;</span>
-<span class="fc" id="L598">        decoder.pos = offset;</span>
-<span class="fc" id="L599">        decoder.minPos = offset;</span>
+<span class="nc" id="L596">        decoder.buf = buf;</span>
+<span class="nc" id="L597">        decoder.limit = offset + length;</span>
+<span class="nc" id="L598">        decoder.pos = offset;</span>
+<span class="nc" id="L599">        decoder.minPos = offset;</span>
       }
-<span class="fc" id="L601">    }</span>
+<span class="nc" id="L601">    }</span>
   }
 
   /**
@@ -640,8 +640,8 @@ public class BinaryDecoder extends Decoder {
     // lost
     protected BufferAccessor ba;
 
-<span class="fc" id="L643">    protected ByteSource() {</span>
-<span class="fc" id="L644">    }</span>
+<span class="nc" id="L643">    protected ByteSource() {</span>
+<span class="nc" id="L644">    }</span>
 
     abstract boolean isEof();
 
@@ -907,33 +907,33 @@ public class BinaryDecoder extends Decoder {
     private byte[] data;
     private int position;
     private int max;
-<span class="fc" id="L910">    private boolean compacted = false;</span>
+<span class="nc" id="L910">    private boolean compacted = false;</span>
 
     private ByteArrayByteSource(byte[] data, int start, int len) {
-<span class="fc" id="L913">      super();</span>
+<span class="nc" id="L913">      super();</span>
       // make sure data is not too small, otherwise getLong may try and
       // read 10 bytes and get index out of bounds.
-<span class="pc bpc" id="L916" title="1 of 2 branches missed.">      if (len &lt; MIN_SIZE) {</span>
-<span class="fc" id="L917">        this.data = Arrays.copyOfRange(data, start, start + MIN_SIZE);</span>
-<span class="fc" id="L918">        this.position = 0;</span>
-<span class="fc" id="L919">        this.max = len;</span>
+<span class="nc bnc" id="L916" title="All 2 branches missed.">      if (len &lt; MIN_SIZE) {</span>
+<span class="nc" id="L917">        this.data = Arrays.copyOfRange(data, start, start + MIN_SIZE);</span>
+<span class="nc" id="L918">        this.position = 0;</span>
+<span class="nc" id="L919">        this.max = len;</span>
       } else {
         // use the array passed in
 <span class="nc" id="L922">        this.data = data;</span>
 <span class="nc" id="L923">        this.position = start;</span>
 <span class="nc" id="L924">        this.max = start + len;</span>
       }
-<span class="fc" id="L926">    }</span>
+<span class="nc" id="L926">    }</span>
 
     @Override
     protected void attach(int bufferSize, BinaryDecoder decoder) {
       // buffer size is not used here, the byte[] source is the buffer.
-<span class="fc" id="L931">      decoder.buf = this.data;</span>
-<span class="fc" id="L932">      decoder.pos = this.position;</span>
-<span class="fc" id="L933">      decoder.minPos = this.position;</span>
-<span class="fc" id="L934">      decoder.limit = this.max;</span>
-<span class="fc" id="L935">      this.ba = new BufferAccessor(decoder);</span>
-<span class="fc" id="L936">    }</span>
+<span class="nc" id="L931">      decoder.buf = this.data;</span>
+<span class="nc" id="L932">      decoder.pos = this.position;</span>
+<span class="nc" id="L933">      decoder.minPos = this.position;</span>
+<span class="nc" id="L934">      decoder.limit = this.max;</span>
+<span class="nc" id="L935">      this.ba = new BufferAccessor(decoder);</span>
+<span class="nc" id="L936">    }</span>
 
     @Override
     protected void skipSourceBytes(long length) throws IOException {
@@ -978,14 +978,14 @@ public class BinaryDecoder extends Decoder {
     protected void compactAndFill(byte[] buf, int pos, int minPos, int remaining) throws IOException {
       // this implementation does not want to mutate the array passed in,
       // so it makes a new tiny buffer unless it has been compacted once before
-<span class="fc bfc" id="L981" title="All 2 branches covered.">      if (!compacted) {</span>
+<span class="nc bnc" id="L981" title="All 2 branches missed.">      if (!compacted) {</span>
         // assumes ensureCapacity is never called with a size more than 16
-<span class="fc" id="L983">        byte[] tinybuf = new byte[remaining + 16];</span>
-<span class="fc" id="L984">        System.arraycopy(buf, pos, tinybuf, 0, remaining);</span>
-<span class="fc" id="L985">        ba.setBuf(tinybuf, 0, remaining);</span>
-<span class="fc" id="L986">        compacted = true;</span>
+<span class="nc" id="L983">        byte[] tinybuf = new byte[remaining + 16];</span>
+<span class="nc" id="L984">        System.arraycopy(buf, pos, tinybuf, 0, remaining);</span>
+<span class="nc" id="L985">        ba.setBuf(tinybuf, 0, remaining);</span>
+<span class="nc" id="L986">        compacted = true;</span>
       }
-<span class="fc" id="L988">    }</span>
+<span class="nc" id="L988">    }</span>
 
     @Override
     public int read() throws IOException {

@@ -63,7 +63,7 @@
 				           
 				            </targetClasses>
 				            <targetTests>
-				              <param>org.apache.avro.io.TestBinaryDataCompare</param>
+				              <param>org.apache.avro.io.TestEncodeInt</param>
 				              <param>org.apache.avro.specific.TestSpecificDataGetSchema</param>
 				            </targetTests>
                         </configuration>

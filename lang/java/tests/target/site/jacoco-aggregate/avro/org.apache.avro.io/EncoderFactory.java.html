@@ -39,16 +39,16 @@ import com.fasterxml.jackson.core.JsonGenerator;
  * @see DirectBinaryEncoder
  */
 
-<span class="fc" id="L42">public class EncoderFactory {</span>
+<span class="nc" id="L42">public class EncoderFactory {</span>
   private static final int DEFAULT_BUFFER_SIZE = 2048;
   private static final int DEFAULT_BLOCK_BUFFER_SIZE = 64 * 1024;
   private static final int MIN_BLOCK_BUFFER_SIZE = 64;
   private static final int MAX_BLOCK_BUFFER_SIZE = 1024 * 1024 * 1024;
 
-<span class="fc" id="L48">  private static final EncoderFactory DEFAULT_FACTORY = new DefaultEncoderFactory();</span>
+<span class="nc" id="L48">  private static final EncoderFactory DEFAULT_FACTORY = new DefaultEncoderFactory();</span>
 
-<span class="fc" id="L50">  protected int binaryBufferSize = DEFAULT_BUFFER_SIZE;</span>
-<span class="fc" id="L51">  protected int binaryBlockSize = DEFAULT_BLOCK_BUFFER_SIZE;</span>
+<span class="nc" id="L50">  protected int binaryBufferSize = DEFAULT_BUFFER_SIZE;</span>
+<span class="nc" id="L51">  protected int binaryBlockSize = DEFAULT_BLOCK_BUFFER_SIZE;</span>
 
   /**
    * Returns an immutable static DecoderFactory with default configuration. All
@@ -170,8 +170,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
    * @see Encoder
    */
   public BinaryEncoder binaryEncoder(OutputStream out, BinaryEncoder reuse) {
-<span class="pc bpc" id="L173" title="3 of 4 branches missed.">    if (null == reuse || !reuse.getClass().equals(BufferedBinaryEncoder.class)) {</span>
-<span class="fc" id="L174">      return new BufferedBinaryEncoder(out, this.binaryBufferSize);</span>
+<span class="nc bnc" id="L173" title="All 4 branches missed.">    if (null == reuse || !reuse.getClass().equals(BufferedBinaryEncoder.class)) {</span>
+<span class="nc" id="L174">      return new BufferedBinaryEncoder(out, this.binaryBufferSize);</span>
     } else {
 <span class="nc" id="L176">      return ((BufferedBinaryEncoder) reuse).configure(out, this.binaryBufferSize);</span>
     }

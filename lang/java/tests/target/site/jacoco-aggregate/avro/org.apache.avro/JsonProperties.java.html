@@ -221,8 +221,8 @@ public abstract class JsonProperties {
    * Returns &lt;tt&gt;null&lt;/tt&gt; if there is no string-valued property with that name.
    */
   public String getProp(String name) {
-<span class="fc" id="L224">    JsonNode value = getJsonProp(name);</span>
-<span class="pc bpc" id="L225" title="3 of 4 branches missed.">    return value != null &amp;&amp; value.isTextual() ? value.textValue() : null;</span>
+<span class="nc" id="L224">    JsonNode value = getJsonProp(name);</span>
+<span class="nc bnc" id="L225" title="All 4 branches missed.">    return value != null &amp;&amp; value.isTextual() ? value.textValue() : null;</span>
   }
 
   /**
@@ -230,7 +230,7 @@ public abstract class JsonProperties {
    * if there is no property with that name.
    */
   private JsonNode getJsonProp(String name) {
-<span class="fc" id="L233">    return props.get(name);</span>
+<span class="nc" id="L233">    return props.get(name);</span>
   }
 
   /**

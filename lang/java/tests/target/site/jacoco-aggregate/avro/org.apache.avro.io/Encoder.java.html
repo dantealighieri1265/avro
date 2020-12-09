@@ -43,7 +43,7 @@ import org.apache.avro.util.Utf8;
  * @see EncoderFactory
  * @see Decoder
  */
-<span class="fc" id="L46">public abstract class Encoder implements Flushable {</span>
+<span class="nc" id="L46">public abstract class Encoder implements Flushable {</span>
 
   /**
    * &quot;Writes&quot; a null value. (Doesn't actually write anything, but advances the
@@ -124,11 +124,11 @@ import org.apache.avro.util.Utf8;
    *                           not expected
    */
   public void writeString(CharSequence charSequence) throws IOException {
-<span class="pc bpc" id="L127" title="1 of 2 branches missed.">    if (charSequence instanceof Utf8)</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">    if (charSequence instanceof Utf8)</span>
 <span class="nc" id="L128">      writeString((Utf8) charSequence);</span>
     else
-<span class="fc" id="L130">      writeString(charSequence.toString());</span>
-<span class="fc" id="L131">  }</span>
+<span class="nc" id="L130">      writeString(charSequence.toString());</span>
+<span class="nc" id="L131">  }</span>
 
   /**
    * Write a byte string.

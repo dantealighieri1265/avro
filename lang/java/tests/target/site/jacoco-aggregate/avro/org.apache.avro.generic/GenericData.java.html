@@ -211,12 +211,12 @@ public class GenericData {
     private final Schema schema;
     private final Object[] values;
 
-<span class="fc" id="L214">    public Record(Schema schema) {</span>
-<span class="pc bpc" id="L215" title="2 of 4 branches missed.">      if (schema == null || !Type.RECORD.equals(schema.getType()))</span>
+<span class="nc" id="L214">    public Record(Schema schema) {</span>
+<span class="nc bnc" id="L215" title="All 4 branches missed.">      if (schema == null || !Type.RECORD.equals(schema.getType()))</span>
 <span class="nc" id="L216">        throw new AvroRuntimeException(&quot;Not a record schema: &quot; + schema);</span>
-<span class="fc" id="L217">      this.schema = schema;</span>
-<span class="fc" id="L218">      this.values = new Object[schema.getFields().size()];</span>
-<span class="fc" id="L219">    }</span>
+<span class="nc" id="L217">      this.schema = schema;</span>
+<span class="nc" id="L218">      this.values = new Object[schema.getFields().size()];</span>
+<span class="nc" id="L219">    }</span>
 
 <span class="nc" id="L221">    public Record(Record other, boolean deepCopy) {</span>
 <span class="nc" id="L222">      schema = other.schema;</span>
@@ -237,13 +237,13 @@ public class GenericData {
 
     @Override
     public void put(String key, Object value) {
-<span class="fc" id="L240">      Schema.Field field = schema.getField(key);</span>
-<span class="pc bpc" id="L241" title="1 of 2 branches missed.">      if (field == null) {</span>
+<span class="nc" id="L240">      Schema.Field field = schema.getField(key);</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">      if (field == null) {</span>
 <span class="nc" id="L242">        throw new AvroRuntimeException(&quot;Not a valid schema field: &quot; + key);</span>
       }
 
-<span class="fc" id="L245">      values[field.pos()] = value;</span>
-<span class="fc" id="L246">    }</span>
+<span class="nc" id="L245">      values[field.pos()] = value;</span>
+<span class="nc" id="L246">    }</span>
 
     @Override
     public void put(int i, Object v) {
@@ -261,7 +261,7 @@ public class GenericData {
 
     @Override
     public Object get(int i) {
-<span class="fc" id="L264">      return values[i];</span>
+<span class="nc" id="L264">      return values[i];</span>
     }
 
     @Override
@@ -295,18 +295,18 @@ public class GenericData {
   /** Default implementation of an array. */
   @SuppressWarnings(value = &quot;unchecked&quot;)
   public static class Array&lt;T&gt; extends AbstractList&lt;T&gt; implements GenericArray&lt;T&gt;, Comparable&lt;GenericArray&lt;T&gt;&gt; {
-<span class="fc" id="L298">    private static final Object[] EMPTY = new Object[0];</span>
+<span class="nc" id="L298">    private static final Object[] EMPTY = new Object[0];</span>
     private final Schema schema;
     private int size;
-<span class="pc" id="L301">    private Object[] elements = EMPTY;</span>
+<span class="nc" id="L301">    private Object[] elements = EMPTY;</span>
 
-<span class="fc" id="L303">    public Array(int capacity, Schema schema) {</span>
-<span class="pc bpc" id="L304" title="2 of 4 branches missed.">      if (schema == null || !Type.ARRAY.equals(schema.getType()))</span>
+<span class="nc" id="L303">    public Array(int capacity, Schema schema) {</span>
+<span class="nc bnc" id="L304" title="All 4 branches missed.">      if (schema == null || !Type.ARRAY.equals(schema.getType()))</span>
 <span class="nc" id="L305">        throw new AvroRuntimeException(&quot;Not an array schema: &quot; + schema);</span>
-<span class="fc" id="L306">      this.schema = schema;</span>
-<span class="pc bpc" id="L307" title="1 of 2 branches missed.">      if (capacity != 0)</span>
-<span class="fc" id="L308">        elements = new Object[capacity];</span>
-<span class="fc" id="L309">    }</span>
+<span class="nc" id="L306">      this.schema = schema;</span>
+<span class="nc bnc" id="L307" title="All 2 branches missed.">      if (capacity != 0)</span>
+<span class="nc" id="L308">        elements = new Object[capacity];</span>
+<span class="nc" id="L309">    }</span>
 
 <span class="nc" id="L311">    public Array(Schema schema, Collection&lt;T&gt; c) {</span>
 <span class="nc bnc" id="L312" title="All 4 branches missed.">      if (schema == null || !Type.ARRAY.equals(schema.getType()))</span>
@@ -325,7 +325,7 @@ public class GenericData {
 
     @Override
     public int size() {
-<span class="fc" id="L328">      return size;</span>
+<span class="nc" id="L328">      return size;</span>
     }
 
     @Override
@@ -349,17 +349,17 @@ public class GenericData {
 
     @Override
     public Iterator&lt;T&gt; iterator() {
-<span class="fc" id="L352">      return new Iterator&lt;T&gt;() {</span>
-<span class="fc" id="L353">        private int position = 0;</span>
+<span class="nc" id="L352">      return new Iterator&lt;T&gt;() {</span>
+<span class="nc" id="L353">        private int position = 0;</span>
 
         @Override
         public boolean hasNext() {
-<span class="fc bfc" id="L357" title="All 2 branches covered.">          return position &lt; size;</span>
+<span class="nc bnc" id="L357" title="All 2 branches missed.">          return position &lt; size;</span>
         }
 
         @Override
         public T next() {
-<span class="fc" id="L362">          return (T) elements[position++];</span>
+<span class="nc" id="L362">          return (T) elements[position++];</span>
         }
 
         @Override
@@ -378,18 +378,18 @@ public class GenericData {
 
     @Override
     public void add(int location, T o) {
-<span class="pc bpc" id="L381" title="2 of 4 branches missed.">      if (location &gt; size || location &lt; 0) {</span>
+<span class="nc bnc" id="L381" title="All 4 branches missed.">      if (location &gt; size || location &lt; 0) {</span>
 <span class="nc" id="L382">        throw new IndexOutOfBoundsException(&quot;Index &quot; + location + &quot; out of bounds.&quot;);</span>
       }
-<span class="fc bfc" id="L384" title="All 2 branches covered.">      if (size == elements.length) {</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">      if (size == elements.length) {</span>
         // Increase size by 1.5x + 1
-<span class="fc" id="L386">        final int newSize = size + (size &gt;&gt; 1) + 1;</span>
-<span class="fc" id="L387">        elements = Arrays.copyOf(elements, newSize);</span>
+<span class="nc" id="L386">        final int newSize = size + (size &gt;&gt; 1) + 1;</span>
+<span class="nc" id="L387">        elements = Arrays.copyOf(elements, newSize);</span>
       }
-<span class="fc" id="L389">      System.arraycopy(elements, location, elements, location + 1, size - location);</span>
-<span class="fc" id="L390">      elements[location] = o;</span>
-<span class="fc" id="L391">      size++;</span>
-<span class="fc" id="L392">    }</span>
+<span class="nc" id="L389">      System.arraycopy(elements, location, elements, location + 1, size - location);</span>
+<span class="nc" id="L390">      elements[location] = o;</span>
+<span class="nc" id="L391">      size++;</span>
+<span class="nc" id="L392">    }</span>
 
     @Override
     public T set(int i, T o) {
@@ -446,10 +446,10 @@ public class GenericData {
 <span class="nc" id="L446">      setSchema(schema);</span>
 <span class="nc" id="L447">    }</span>
 
-<span class="fc" id="L449">    public Fixed(Schema schema, byte[] bytes) {</span>
-<span class="fc" id="L450">      this.schema = schema;</span>
-<span class="fc" id="L451">      this.bytes = bytes;</span>
-<span class="fc" id="L452">    }</span>
+<span class="nc" id="L449">    public Fixed(Schema schema, byte[] bytes) {</span>
+<span class="nc" id="L450">      this.schema = schema;</span>
+<span class="nc" id="L451">      this.bytes = bytes;</span>
+<span class="nc" id="L452">    }</span>
 
 <span class="nc" id="L454">    protected Fixed() {</span>
 <span class="nc" id="L455">    }</span>
@@ -470,7 +470,7 @@ public class GenericData {
 
     @Override
     public byte[] bytes() {
-<span class="fc" id="L473">      return bytes;</span>
+<span class="nc" id="L473">      return bytes;</span>
     }
 
     @Override
@@ -825,7 +825,7 @@ public class GenericData {
    * {@link IndexedRecord}.
    */
   public Object getField(Object record, String name, int position) {
-<span class="fc" id="L828">    return ((IndexedRecord) record).get(position);</span>
+<span class="nc" id="L828">    return ((IndexedRecord) record).get(position);</span>
   }
 
   /**
@@ -834,7 +834,7 @@ public class GenericData {
    * {@link #setField(Object,String,int,Object,Object)} on the same record.
    */
   protected Object getRecordState(Object record, Schema schema) {
-<span class="fc" id="L837">    return null;</span>
+<span class="nc" id="L837">    return null;</span>
   }
 
   /** Version of {@link #setField} that has state. */
@@ -844,7 +844,7 @@ public class GenericData {
 
   /** Version of {@link #getField} that has state. */
   protected Object getField(Object record, String name, int pos, Object state) {
-<span class="fc" id="L847">    return getField(record, name, pos);</span>
+<span class="nc" id="L847">    return getField(record, name, pos);</span>
   }
 
   /**
@@ -855,9 +855,9 @@ public class GenericData {
     // if there is a logical type that works, use it first
     // this allows logical type concrete classes to overlap with supported ones
     // for example, a conversion could return a map
-<span class="fc bfc" id="L858" title="All 2 branches covered.">    if (datum != null) {</span>
-<span class="fc" id="L859">      Map&lt;String, Conversion&lt;?&gt;&gt; conversions = conversionsByClass.get(datum.getClass());</span>
-<span class="pc bpc" id="L860" title="1 of 2 branches missed.">      if (conversions != null) {</span>
+<span class="nc bnc" id="L858" title="All 2 branches missed.">    if (datum != null) {</span>
+<span class="nc" id="L859">      Map&lt;String, Conversion&lt;?&gt;&gt; conversions = conversionsByClass.get(datum.getClass());</span>
+<span class="nc bnc" id="L860" title="All 2 branches missed.">      if (conversions != null) {</span>
 <span class="nc" id="L861">        List&lt;Schema&gt; candidates = union.getTypes();</span>
 <span class="nc bnc" id="L862" title="All 2 branches missed.">        for (int i = 0; i &lt; candidates.size(); i += 1) {</span>
 <span class="nc" id="L863">          LogicalType candidateType = candidates.get(i).getLogicalType();</span>
@@ -871,9 +871,9 @@ public class GenericData {
       }
     }
 
-<span class="fc" id="L874">    Integer i = union.getIndexNamed(getSchemaName(datum));</span>
-<span class="pc bpc" id="L875" title="1 of 2 branches missed.">    if (i != null) {</span>
-<span class="fc" id="L876">      return i;</span>
+<span class="nc" id="L874">    Integer i = union.getIndexNamed(getSchemaName(datum));</span>
+<span class="nc bnc" id="L875" title="All 2 branches missed.">    if (i != null) {</span>
+<span class="nc" id="L876">      return i;</span>
     }
 <span class="nc" id="L878">    throw new UnresolvedUnionException(union, datum);</span>
   }
@@ -883,24 +883,24 @@ public class GenericData {
    * {@link #resolveUnion(Schema,Object)}.
    */
   protected String getSchemaName(Object datum) {
-<span class="pc bpc" id="L886" title="1 of 4 branches missed.">    if (datum == null || datum == JsonProperties.NULL_VALUE)</span>
-<span class="fc" id="L887">      return Type.NULL.getName();</span>
-<span class="pc bpc" id="L888" title="1 of 2 branches missed.">    if (isRecord(datum))</span>
+<span class="nc bnc" id="L886" title="All 4 branches missed.">    if (datum == null || datum == JsonProperties.NULL_VALUE)</span>
+<span class="nc" id="L887">      return Type.NULL.getName();</span>
+<span class="nc bnc" id="L888" title="All 2 branches missed.">    if (isRecord(datum))</span>
 <span class="nc" id="L889">      return getRecordSchema(datum).getFullName();</span>
-<span class="pc bpc" id="L890" title="1 of 2 branches missed.">    if (isEnum(datum))</span>
+<span class="nc bnc" id="L890" title="All 2 branches missed.">    if (isEnum(datum))</span>
 <span class="nc" id="L891">      return getEnumSchema(datum).getFullName();</span>
-<span class="pc bpc" id="L892" title="1 of 2 branches missed.">    if (isArray(datum))</span>
+<span class="nc bnc" id="L892" title="All 2 branches missed.">    if (isArray(datum))</span>
 <span class="nc" id="L893">      return Type.ARRAY.getName();</span>
-<span class="pc bpc" id="L894" title="1 of 2 branches missed.">    if (isMap(datum))</span>
+<span class="nc bnc" id="L894" title="All 2 branches missed.">    if (isMap(datum))</span>
 <span class="nc" id="L895">      return Type.MAP.getName();</span>
-<span class="pc bpc" id="L896" title="1 of 2 branches missed.">    if (isFixed(datum))</span>
+<span class="nc bnc" id="L896" title="All 2 branches missed.">    if (isFixed(datum))</span>
 <span class="nc" id="L897">      return getFixedSchema(datum).getFullName();</span>
-<span class="pc bpc" id="L898" title="1 of 2 branches missed.">    if (isString(datum))</span>
+<span class="nc bnc" id="L898" title="All 2 branches missed.">    if (isString(datum))</span>
 <span class="nc" id="L899">      return Type.STRING.getName();</span>
-<span class="pc bpc" id="L900" title="1 of 2 branches missed.">    if (isBytes(datum))</span>
+<span class="nc bnc" id="L900" title="All 2 branches missed.">    if (isBytes(datum))</span>
 <span class="nc" id="L901">      return Type.BYTES.getName();</span>
-<span class="pc bpc" id="L902" title="1 of 2 branches missed.">    if (isInteger(datum))</span>
-<span class="fc" id="L903">      return Type.INT.getName();</span>
+<span class="nc bnc" id="L902" title="All 2 branches missed.">    if (isInteger(datum))</span>
+<span class="nc" id="L903">      return Type.INT.getName();</span>
 <span class="nc bnc" id="L904" title="All 2 branches missed.">    if (isLong(datum))</span>
 <span class="nc" id="L905">      return Type.LONG.getName();</span>
 <span class="nc bnc" id="L906" title="All 2 branches missed.">    if (isFloat(datum))</span>
@@ -958,7 +958,7 @@ public class GenericData {
 
   /** Called by the default implementation of {@link #instanceOf}. */
   protected boolean isArray(Object datum) {
-<span class="fc" id="L961">    return datum instanceof Collection;</span>
+<span class="nc" id="L961">    return datum instanceof Collection;</span>
   }
 
   /** Called to access an array as a collection. */
@@ -968,7 +968,7 @@ public class GenericData {
 
   /** Called by the default implementation of {@link #instanceOf}. */
   protected boolean isRecord(Object datum) {
-<span class="fc" id="L971">    return datum instanceof IndexedRecord;</span>
+<span class="nc" id="L971">    return datum instanceof IndexedRecord;</span>
   }
 
   /**
@@ -982,7 +982,7 @@ public class GenericData {
 
   /** Called by the default implementation of {@link #instanceOf}. */
   protected boolean isEnum(Object datum) {
-<span class="fc" id="L985">    return datum instanceof GenericEnumSymbol;</span>
+<span class="nc" id="L985">    return datum instanceof GenericEnumSymbol;</span>
   }
 
   /**
@@ -996,12 +996,12 @@ public class GenericData {
 
   /** Called by the default implementation of {@link #instanceOf}. */
   protected boolean isMap(Object datum) {
-<span class="fc" id="L999">    return datum instanceof Map;</span>
+<span class="nc" id="L999">    return datum instanceof Map;</span>
   }
 
   /** Called by the default implementation of {@link #instanceOf}. */
   protected boolean isFixed(Object datum) {
-<span class="fc" id="L1004">    return datum instanceof GenericFixed;</span>
+<span class="nc" id="L1004">    return datum instanceof GenericFixed;</span>
   }
 
   /**
@@ -1015,19 +1015,19 @@ public class GenericData {
 
   /** Called by the default implementation of {@link #instanceOf}. */
   protected boolean isString(Object datum) {
-<span class="fc" id="L1018">    return datum instanceof CharSequence;</span>
+<span class="nc" id="L1018">    return datum instanceof CharSequence;</span>
   }
 
   /** Called by the default implementation of {@link #instanceOf}. */
   protected boolean isBytes(Object datum) {
-<span class="fc" id="L1023">    return datum instanceof ByteBuffer;</span>
+<span class="nc" id="L1023">    return datum instanceof ByteBuffer;</span>
   }
 
   /**
    * Called by the default implementation of {@link #instanceOf}.
    */
   protected boolean isInteger(Object datum) {
-<span class="fc" id="L1030">    return datum instanceof Integer;</span>
+<span class="nc" id="L1030">    return datum instanceof Integer;</span>
   }
 
   /**

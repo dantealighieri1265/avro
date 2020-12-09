@@ -1,6 +1,6 @@
 org/apache/avro/file/codec/CustomCodec.class
-org/apache/avro/io/TestBinaryDataCompare$1.class
 NoPackage.class
+org/apache/avro/io/entity/EncodeTestEntity.class
 org/apache/avro/io/LegacyBinaryEncoder$SimpleByteWriter.class
 org/apache/avro/specific/TestSpecificDataGetSchema.class
 org/apache/avro/FooBarSpecificRecord$Builder.class
@@ -10,9 +10,8 @@ org/apache/avro/io/LegacyBinaryEncoder$ByteWriter.class
 org/apache/avro/FooBarSpecificRecord$1.class
 org/apache/avro/GenerateBlockingData.class
 org/apache/avro/FooBarSpecificRecord.class
-org/apache/avro/io/utils/BinaryDataUtils.class
+org/apache/avro/io/TestEncodeInt.class
 org/apache/avro/FooRecord.class
 org/apache/avro/io/LegacyBinaryEncoder.class
-org/apache/avro/io/TestBinaryDataCompare.class
 org/apache/avro/TypeEnum.class
 org/apache/avro/util/CaseFinder.class

@@ -33,14 +33,14 @@ public class LogicalType {
 
   public static final String LOGICAL_TYPE_PROP = &quot;logicalType&quot;;
 
-<span class="fc" id="L36">  private static final String[] INCOMPATIBLE_PROPS = new String[] { GenericData.STRING_PROP, SpecificData.CLASS_PROP,</span>
+<span class="nc" id="L36">  private static final String[] INCOMPATIBLE_PROPS = new String[] { GenericData.STRING_PROP, SpecificData.CLASS_PROP,</span>
       SpecificData.KEY_CLASS_PROP, SpecificData.ELEMENT_PROP };
 
   private final String name;
 
-<span class="fc" id="L41">  public LogicalType(String logicalTypeName) {</span>
-<span class="fc" id="L42">    this.name = logicalTypeName.intern();</span>
-<span class="fc" id="L43">  }</span>
+<span class="nc" id="L41">  public LogicalType(String logicalTypeName) {</span>
+<span class="nc" id="L42">    this.name = logicalTypeName.intern();</span>
+<span class="nc" id="L43">  }</span>
 
   /**
    * Get the name of this logical type.

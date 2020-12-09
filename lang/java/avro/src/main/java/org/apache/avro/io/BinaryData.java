@@ -18,6 +18,7 @@
 package org.apache.avro.io;
 
 import java.io.IOException;
+import java.util.BitSet;
 
 import org.apache.avro.Schema;
 import org.apache.avro.Schema.Field;
@@ -314,11 +315,11 @@ public class BinaryData {
    */
   public static int encodeInt(int n, byte[] buf, int pos) {
     // move sign to low-order bit, and flip others if negative
-    n = (n << 1) ^ (n >> 31);
+    n = (n << 1) ^ (n >> 31); // n*2 invertito se negativo
     int start = pos;
-    if ((n & ~0x7F) != 0) {
-      buf[pos++] = (byte) ((n | 0x80) & 0xFF);
-      n >>>= 7;
+    if ((n & ~0x7F) != 0) {//1000.0000 n >= 128
+      buf[pos++] = (byte) ((n | 0x80) & 0xFF);// n or 1000.0000 and 1111.1111 
+      n >>>= 7;									//	
       if (n > 0x7F) {
         buf[pos++] = (byte) ((n | 0x80) & 0xFF);
         n >>>= 7;
@@ -426,5 +427,11 @@ public class BinaryData {
     buf[pos + 3] = (byte) (first >>> 24);
     return 8;
   }
+  public static void main(String[] args) {
+	  byte[] b = new byte[5];
+	  System.out.println(BitSet.valueOf(b));
+	  encodeInt(2*128*128*128*128, b, 0);
+	  System.out.println(BitSet.valueOf(b).hashCode());//{7, 15, 23, 31, 34}
+}
 
 }

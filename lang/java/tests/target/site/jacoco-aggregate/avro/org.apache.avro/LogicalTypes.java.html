@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 <span class="nc" id="L28">public class LogicalTypes {</span>
 
-<span class="fc" id="L30">  private static final Logger LOG = LoggerFactory.getLogger(LogicalTypes.class);</span>
+<span class="nc" id="L30">  private static final Logger LOG = LoggerFactory.getLogger(LogicalTypes.class);</span>
 
   public interface LogicalTypeFactory {
     LogicalType fromSchema(Schema schema);
@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
     }
   }
 
-<span class="fc" id="L40">  private static final Map&lt;String, LogicalTypeFactory&gt; REGISTERED_TYPES = new ConcurrentHashMap&lt;&gt;();</span>
+<span class="nc" id="L40">  private static final Map&lt;String, LogicalTypeFactory&gt; REGISTERED_TYPES = new ConcurrentHashMap&lt;&gt;();</span>
 
   /**
    * Register a logical type.
@@ -62,15 +62,15 @@ import org.slf4j.LoggerFactory;
   }
 
   public static LogicalType fromSchemaIgnoreInvalid(Schema schema) {
-<span class="fc" id="L65">    return fromSchemaImpl(schema, false);</span>
+<span class="nc" id="L65">    return fromSchemaImpl(schema, false);</span>
   }
 
   private static LogicalType fromSchemaImpl(Schema schema, boolean throwErrors) {
     final LogicalType logicalType;
-<span class="fc" id="L70">    final String typeName = schema.getProp(LogicalType.LOGICAL_TYPE_PROP);</span>
+<span class="nc" id="L70">    final String typeName = schema.getProp(LogicalType.LOGICAL_TYPE_PROP);</span>
 
-<span class="pc bpc" id="L72" title="1 of 2 branches missed.">    if (typeName == null) {</span>
-<span class="fc" id="L73">      return null;</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (typeName == null) {</span>
+<span class="nc" id="L73">      return null;</span>
     }
 
     try {
@@ -145,49 +145,49 @@ import org.slf4j.LoggerFactory;
 <span class="nc" id="L145">    return new Decimal(precision, scale);</span>
   }
 
-<span class="fc" id="L148">  private static final LogicalType UUID_TYPE = new LogicalType(&quot;uuid&quot;);</span>
+<span class="nc" id="L148">  private static final LogicalType UUID_TYPE = new LogicalType(&quot;uuid&quot;);</span>
 
   public static LogicalType uuid() {
 <span class="nc" id="L151">    return UUID_TYPE;</span>
   }
 
-<span class="fc" id="L154">  private static final Date DATE_TYPE = new Date();</span>
+<span class="nc" id="L154">  private static final Date DATE_TYPE = new Date();</span>
 
   public static Date date() {
 <span class="nc" id="L157">    return DATE_TYPE;</span>
   }
 
-<span class="fc" id="L160">  private static final TimeMillis TIME_MILLIS_TYPE = new TimeMillis();</span>
+<span class="nc" id="L160">  private static final TimeMillis TIME_MILLIS_TYPE = new TimeMillis();</span>
 
   public static TimeMillis timeMillis() {
 <span class="nc" id="L163">    return TIME_MILLIS_TYPE;</span>
   }
 
-<span class="fc" id="L166">  private static final TimeMicros TIME_MICROS_TYPE = new TimeMicros();</span>
+<span class="nc" id="L166">  private static final TimeMicros TIME_MICROS_TYPE = new TimeMicros();</span>
 
   public static TimeMicros timeMicros() {
 <span class="nc" id="L169">    return TIME_MICROS_TYPE;</span>
   }
 
-<span class="fc" id="L172">  private static final TimestampMillis TIMESTAMP_MILLIS_TYPE = new TimestampMillis();</span>
+<span class="nc" id="L172">  private static final TimestampMillis TIMESTAMP_MILLIS_TYPE = new TimestampMillis();</span>
 
   public static TimestampMillis timestampMillis() {
 <span class="nc" id="L175">    return TIMESTAMP_MILLIS_TYPE;</span>
   }
 
-<span class="fc" id="L178">  private static final TimestampMicros TIMESTAMP_MICROS_TYPE = new TimestampMicros();</span>
+<span class="nc" id="L178">  private static final TimestampMicros TIMESTAMP_MICROS_TYPE = new TimestampMicros();</span>
 
   public static TimestampMicros timestampMicros() {
 <span class="nc" id="L181">    return TIMESTAMP_MICROS_TYPE;</span>
   }
 
-<span class="fc" id="L184">  private static final LocalTimestampMillis LOCAL_TIMESTAMP_MILLIS_TYPE = new LocalTimestampMillis();</span>
+<span class="nc" id="L184">  private static final LocalTimestampMillis LOCAL_TIMESTAMP_MILLIS_TYPE = new LocalTimestampMillis();</span>
 
   public static LocalTimestampMillis localTimestampMillis() {
 <span class="nc" id="L187">    return LOCAL_TIMESTAMP_MILLIS_TYPE;</span>
   }
 
-<span class="fc" id="L190">  private static final LocalTimestampMicros LOCAL_TIMESTAMP_MICROS_TYPE = new LocalTimestampMicros();</span>
+<span class="nc" id="L190">  private static final LocalTimestampMicros LOCAL_TIMESTAMP_MICROS_TYPE = new LocalTimestampMicros();</span>
 
   public static LocalTimestampMicros localTimestampMicros() {
 <span class="nc" id="L193">    return LOCAL_TIMESTAMP_MICROS_TYPE;</span>
@@ -310,8 +310,8 @@ import org.slf4j.LoggerFactory;
   /** Date represents a date without a time */
   public static class Date extends LogicalType {
     private Date() {
-<span class="fc" id="L313">      super(DATE);</span>
-<span class="fc" id="L314">    }</span>
+<span class="nc" id="L313">      super(DATE);</span>
+<span class="nc" id="L314">    }</span>
 
     @Override
     public void validate(Schema schema) {
@@ -325,8 +325,8 @@ import org.slf4j.LoggerFactory;
   /** TimeMillis represents a time in milliseconds without a date */
   public static class TimeMillis extends LogicalType {
     private TimeMillis() {
-<span class="fc" id="L328">      super(TIME_MILLIS);</span>
-<span class="fc" id="L329">    }</span>
+<span class="nc" id="L328">      super(TIME_MILLIS);</span>
+<span class="nc" id="L329">    }</span>
 
     @Override
     public void validate(Schema schema) {
@@ -340,8 +340,8 @@ import org.slf4j.LoggerFactory;
   /** TimeMicros represents a time in microseconds without a date */
   public static class TimeMicros extends LogicalType {
     private TimeMicros() {
-<span class="fc" id="L343">      super(TIME_MICROS);</span>
-<span class="fc" id="L344">    }</span>
+<span class="nc" id="L343">      super(TIME_MICROS);</span>
+<span class="nc" id="L344">    }</span>
 
     @Override
     public void validate(Schema schema) {
@@ -355,8 +355,8 @@ import org.slf4j.LoggerFactory;
   /** TimestampMillis represents a date and time in milliseconds */
   public static class TimestampMillis extends LogicalType {
     private TimestampMillis() {
-<span class="fc" id="L358">      super(TIMESTAMP_MILLIS);</span>
-<span class="fc" id="L359">    }</span>
+<span class="nc" id="L358">      super(TIMESTAMP_MILLIS);</span>
+<span class="nc" id="L359">    }</span>
 
     @Override
     public void validate(Schema schema) {
@@ -370,8 +370,8 @@ import org.slf4j.LoggerFactory;
   /** TimestampMicros represents a date and time in microseconds */
   public static class TimestampMicros extends LogicalType {
     private TimestampMicros() {
-<span class="fc" id="L373">      super(TIMESTAMP_MICROS);</span>
-<span class="fc" id="L374">    }</span>
+<span class="nc" id="L373">      super(TIMESTAMP_MICROS);</span>
+<span class="nc" id="L374">    }</span>
 
     @Override
     public void validate(Schema schema) {
@@ -384,8 +384,8 @@ import org.slf4j.LoggerFactory;
 
   public static class LocalTimestampMillis extends LogicalType {
     private LocalTimestampMillis() {
-<span class="fc" id="L387">      super(LOCAL_TIMESTAMP_MILLIS);</span>
-<span class="fc" id="L388">    }</span>
+<span class="nc" id="L387">      super(LOCAL_TIMESTAMP_MILLIS);</span>
+<span class="nc" id="L388">    }</span>
 
     @Override
     public void validate(Schema schema) {
@@ -398,8 +398,8 @@ import org.slf4j.LoggerFactory;
 
   public static class LocalTimestampMicros extends LogicalType {
     private LocalTimestampMicros() {
-<span class="fc" id="L401">      super(LOCAL_TIMESTAMP_MICROS);</span>
-<span class="fc" id="L402">    }</span>
+<span class="nc" id="L401">      super(LOCAL_TIMESTAMP_MICROS);</span>
+<span class="nc" id="L402">    }</span>
 
     @Override
     public void validate(Schema schema) {

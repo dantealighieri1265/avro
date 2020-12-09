@@ -1,10 +1,10 @@
 /home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/BarRecord.java
 /home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/file/codec/CustomCodec.java
-/home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/io/utils/BinaryDataUtils.java
-/home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/io/TestBinaryDataCompare.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/io/TestEncodeInt.java
 /home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/specific/TestSpecificDataGetSchema.java
 /home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/util/CaseFinder.java
 /home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/NoPackage.java
+/home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/io/entity/EncodeTestEntity.java
 /home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/io/LegacyBinaryEncoder.java
 /home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/ByteBufferRecord.java
 /home/giuseppe/eclipse-workspace/avro/lang/java/avro/src/test/java/org/apache/avro/GenerateBlockingData.java

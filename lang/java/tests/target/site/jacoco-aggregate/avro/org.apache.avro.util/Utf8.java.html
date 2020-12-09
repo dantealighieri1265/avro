@@ -32,29 +32,29 @@ import org.slf4j.LoggerFactory;
 public class Utf8 implements Comparable&lt;Utf8&gt;, CharSequence {
   private static final String MAX_LENGTH_PROPERTY = &quot;org.apache.avro.limits.string.maxLength&quot;;
   private static final int MAX_LENGTH;
-<span class="fc" id="L35">  private static final byte[] EMPTY = new byte[0];</span>
+<span class="nc" id="L35">  private static final byte[] EMPTY = new byte[0];</span>
 
   static {
-<span class="fc" id="L38">    String o = System.getProperty(MAX_LENGTH_PROPERTY);</span>
-<span class="fc" id="L39">    int i = Integer.MAX_VALUE;</span>
-<span class="pc bpc" id="L40" title="1 of 2 branches missed.">    if (o != null) {</span>
+<span class="nc" id="L38">    String o = System.getProperty(MAX_LENGTH_PROPERTY);</span>
+<span class="nc" id="L39">    int i = Integer.MAX_VALUE;</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">    if (o != null) {</span>
       try {
 <span class="nc" id="L42">        i = Integer.parseUnsignedInt(o);</span>
 <span class="nc" id="L43">      } catch (NumberFormatException nfe) {</span>
 <span class="nc" id="L44">        LoggerFactory.getLogger(Utf8.class).warn(&quot;Could not parse property &quot; + MAX_LENGTH_PROPERTY + &quot;: &quot; + o, nfe);</span>
 <span class="nc" id="L45">      }</span>
     }
-<span class="fc" id="L47">    MAX_LENGTH = i;</span>
-<span class="fc" id="L48">  }</span>
+<span class="nc" id="L47">    MAX_LENGTH = i;</span>
+<span class="nc" id="L48">  }</span>
 
-<span class="pc" id="L50">  private byte[] bytes = EMPTY;</span>
-<span class="pc" id="L51">  private int hash = 0;</span>
-<span class="pc" id="L52">  private boolean hasHash = false;</span>
+<span class="nc" id="L50">  private byte[] bytes = EMPTY;</span>
+<span class="nc" id="L51">  private int hash = 0;</span>
+<span class="nc" id="L52">  private boolean hasHash = false;</span>
   private int length;
   private String string;
 
-<span class="fc" id="L56">  public Utf8() {</span>
-<span class="fc" id="L57">  }</span>
+<span class="nc" id="L56">  public Utf8() {</span>
+<span class="nc" id="L57">  }</span>
 
 <span class="nc" id="L59">  public Utf8(String string) {</span>
 <span class="nc" id="L60">    this.bytes = getBytesFor(string);</span>

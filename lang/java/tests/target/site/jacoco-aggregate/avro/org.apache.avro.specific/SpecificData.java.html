@@ -139,19 +139,19 @@ public class SpecificData extends GenericData {
    *         instance.
    */
   public static SpecificData getForSchema(Schema reader) {
-<span class="pc bpc" id="L142" title="1 of 4 branches missed.">    if (reader != null &amp;&amp; reader.getType() == Type.RECORD) {</span>
-<span class="fc" id="L143">      final String className = getClassName(reader);</span>
-<span class="pc bpc" id="L144" title="1 of 2 branches missed.">      if (className != null) {</span>
+<span class="nc bnc" id="L142" title="All 4 branches missed.">    if (reader != null &amp;&amp; reader.getType() == Type.RECORD) {</span>
+<span class="nc" id="L143">      final String className = getClassName(reader);</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">      if (className != null) {</span>
         final Class&lt;?&gt; clazz;
         try {
 <span class="nc" id="L147">          clazz = Class.forName(className);</span>
 <span class="nc" id="L148">          return getForClass(clazz);</span>
-<span class="fc" id="L149">        } catch (ClassNotFoundException e) {</span>
-<span class="fc" id="L150">          return SpecificData.get();</span>
+<span class="nc" id="L149">        } catch (ClassNotFoundException e) {</span>
+<span class="nc" id="L150">          return SpecificData.get();</span>
         }
       }
     }
-<span class="fc" id="L154">    return SpecificData.get();</span>
+<span class="nc" id="L154">    return SpecificData.get();</span>
   }
 
   /**
@@ -208,7 +208,7 @@ public class SpecificData extends GenericData {
 
   @Override
   protected boolean isEnum(Object datum) {
-<span class="pc bpc" id="L211" title="2 of 4 branches missed.">    return datum instanceof Enum || super.isEnum(datum);</span>
+<span class="nc bnc" id="L211" title="All 4 branches missed.">    return datum instanceof Enum || super.isEnum(datum);</span>
   }
 
   @Override
@@ -304,12 +304,12 @@ public class SpecificData extends GenericData {
 
   /** Returns the Java class name indicated by a schema's name and namespace. */
   public static String getClassName(Schema schema) {
-<span class="fc" id="L307">    String namespace = schema.getNamespace();</span>
-<span class="fc" id="L308">    String name = schema.getName();</span>
-<span class="pc bpc" id="L309" title="2 of 4 branches missed.">    if (namespace == null || &quot;&quot;.equals(namespace))</span>
+<span class="nc" id="L307">    String namespace = schema.getNamespace();</span>
+<span class="nc" id="L308">    String name = schema.getName();</span>
+<span class="nc bnc" id="L309" title="All 4 branches missed.">    if (namespace == null || &quot;&quot;.equals(namespace))</span>
 <span class="nc" id="L310">      return name;</span>
-<span class="pc bpc" id="L311" title="1 of 2 branches missed.">    String dot = namespace.endsWith(&quot;$&quot;) ? &quot;&quot; : &quot;.&quot;; // back-compatibly handle $</span>
-<span class="fc" id="L312">    return namespace + dot + name;</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">    String dot = namespace.endsWith(&quot;$&quot;) ? &quot;&quot; : &quot;.&quot;; // back-compatibly handle $</span>
+<span class="nc" id="L312">    return namespace + dot + name;</span>
   }
 
   private String getNestedClassName(Schema schema) {
@@ -405,17 +405,17 @@ public class SpecificData extends GenericData {
 
   @Override
   protected String getSchemaName(Object datum) {
-<span class="fc bfc" id="L408" title="All 2 branches covered.">    if (datum != null) {</span>
-<span class="fc" id="L409">      Class c = datum.getClass();</span>
-<span class="pc bpc" id="L410" title="1 of 2 branches missed.">      if (isStringable(c))</span>
+<span class="nc bnc" id="L408" title="All 2 branches missed.">    if (datum != null) {</span>
+<span class="nc" id="L409">      Class c = datum.getClass();</span>
+<span class="nc bnc" id="L410" title="All 2 branches missed.">      if (isStringable(c))</span>
 <span class="nc" id="L411">        return Schema.Type.STRING.getName();</span>
     }
-<span class="fc" id="L413">    return super.getSchemaName(datum);</span>
+<span class="nc" id="L413">    return super.getSchemaName(datum);</span>
   }
 
   /** True if a class should be serialized with toString(). */
   protected boolean isStringable(Class&lt;?&gt; c) {
-<span class="fc" id="L418">    return stringableClasses.contains(c);</span>
+<span class="nc" id="L418">    return stringableClasses.contains(c);</span>
   }
 
   /** True if a class IS a string type */

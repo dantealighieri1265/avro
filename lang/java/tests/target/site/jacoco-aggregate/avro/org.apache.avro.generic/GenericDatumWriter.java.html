@@ -45,9 +45,9 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
 <span class="nc" id="L45">    this(GenericData.get());</span>
 <span class="nc" id="L46">  }</span>
 
-<span class="fc" id="L48">  protected GenericDatumWriter(GenericData data) {</span>
-<span class="fc" id="L49">    this.data = data;</span>
-<span class="fc" id="L50">  }</span>
+<span class="nc" id="L48">  protected GenericDatumWriter(GenericData data) {</span>
+<span class="nc" id="L49">    this.data = data;</span>
+<span class="nc" id="L50">  }</span>
 
   public GenericDatumWriter(Schema root) {
 <span class="nc" id="L53">    this();</span>
@@ -55,9 +55,9 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
 <span class="nc" id="L55">  }</span>
 
   public GenericDatumWriter(Schema root, GenericData data) {
-<span class="fc" id="L58">    this(data);</span>
-<span class="fc" id="L59">    setSchema(root);</span>
-<span class="fc" id="L60">  }</span>
+<span class="nc" id="L58">    this(data);</span>
+<span class="nc" id="L59">    setSchema(root);</span>
+<span class="nc" id="L60">  }</span>
 
   /** Return the {@link GenericData} implementation. */
   public GenericData getData() {
@@ -65,24 +65,24 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
   }
 
   public void setSchema(Schema root) {
-<span class="fc" id="L68">    this.root = root;</span>
-<span class="fc" id="L69">  }</span>
+<span class="nc" id="L68">    this.root = root;</span>
+<span class="nc" id="L69">  }</span>
 
   public void write(D datum, Encoder out) throws IOException {
-<span class="fc" id="L72">    Objects.requireNonNull(out, &quot;Encoder cannot be null&quot;);</span>
-<span class="fc" id="L73">    write(root, datum, out);</span>
-<span class="fc" id="L74">  }</span>
+<span class="nc" id="L72">    Objects.requireNonNull(out, &quot;Encoder cannot be null&quot;);</span>
+<span class="nc" id="L73">    write(root, datum, out);</span>
+<span class="nc" id="L74">  }</span>
 
   /** Called to write data. */
   protected void write(Schema schema, Object datum, Encoder out) throws IOException {
-<span class="fc" id="L78">    LogicalType logicalType = schema.getLogicalType();</span>
-<span class="pc bpc" id="L79" title="1 of 4 branches missed.">    if (datum != null &amp;&amp; logicalType != null) {</span>
+<span class="nc" id="L78">    LogicalType logicalType = schema.getLogicalType();</span>
+<span class="nc bnc" id="L79" title="All 4 branches missed.">    if (datum != null &amp;&amp; logicalType != null) {</span>
 <span class="nc" id="L80">      Conversion&lt;?&gt; conversion = getData().getConversionByClass(datum.getClass(), logicalType);</span>
 <span class="nc" id="L81">      writeWithoutConversion(schema, convert(schema, logicalType, conversion, datum), out);</span>
 <span class="nc" id="L82">    } else {</span>
-<span class="fc" id="L83">      writeWithoutConversion(schema, datum, out);</span>
+<span class="nc" id="L83">      writeWithoutConversion(schema, datum, out);</span>
     }
-<span class="fc" id="L85">  }</span>
+<span class="nc" id="L85">  }</span>
 
   /**
    * Convert a high level representation of a logical type (such as a BigDecimal)
@@ -126,36 +126,36 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
   /** Called to write data. */
   protected void writeWithoutConversion(Schema schema, Object datum, Encoder out) throws IOException {
     try {
-<span class="pc bpc" id="L129" title="6 of 15 branches missed.">      switch (schema.getType()) {</span>
+<span class="nc bnc" id="L129" title="All 15 branches missed.">      switch (schema.getType()) {</span>
       case RECORD:
-<span class="fc" id="L131">        writeRecord(schema, datum, out);</span>
-<span class="fc" id="L132">        break;</span>
+<span class="nc" id="L131">        writeRecord(schema, datum, out);</span>
+<span class="nc" id="L132">        break;</span>
       case ENUM:
-<span class="fc" id="L134">        writeEnum(schema, datum, out);</span>
-<span class="fc" id="L135">        break;</span>
+<span class="nc" id="L134">        writeEnum(schema, datum, out);</span>
+<span class="nc" id="L135">        break;</span>
       case ARRAY:
-<span class="fc" id="L137">        writeArray(schema, datum, out);</span>
-<span class="fc" id="L138">        break;</span>
+<span class="nc" id="L137">        writeArray(schema, datum, out);</span>
+<span class="nc" id="L138">        break;</span>
       case MAP:
-<span class="fc" id="L140">        writeMap(schema, datum, out);</span>
-<span class="fc" id="L141">        break;</span>
+<span class="nc" id="L140">        writeMap(schema, datum, out);</span>
+<span class="nc" id="L141">        break;</span>
       case UNION:
-<span class="fc" id="L143">        int index = resolveUnion(schema, datum);</span>
-<span class="fc" id="L144">        out.writeIndex(index);</span>
-<span class="fc" id="L145">        write(schema.getTypes().get(index), datum, out);</span>
-<span class="fc" id="L146">        break;</span>
+<span class="nc" id="L143">        int index = resolveUnion(schema, datum);</span>
+<span class="nc" id="L144">        out.writeIndex(index);</span>
+<span class="nc" id="L145">        write(schema.getTypes().get(index), datum, out);</span>
+<span class="nc" id="L146">        break;</span>
       case FIXED:
-<span class="fc" id="L148">        writeFixed(schema, datum, out);</span>
-<span class="fc" id="L149">        break;</span>
+<span class="nc" id="L148">        writeFixed(schema, datum, out);</span>
+<span class="nc" id="L149">        break;</span>
       case STRING:
-<span class="fc" id="L151">        writeString(schema, datum, out);</span>
-<span class="fc" id="L152">        break;</span>
+<span class="nc" id="L151">        writeString(schema, datum, out);</span>
+<span class="nc" id="L152">        break;</span>
       case BYTES:
 <span class="nc" id="L154">        writeBytes(datum, out);</span>
 <span class="nc" id="L155">        break;</span>
       case INT:
-<span class="fc" id="L157">        out.writeInt(((Number) datum).intValue());</span>
-<span class="fc" id="L158">        break;</span>
+<span class="nc" id="L157">        out.writeInt(((Number) datum).intValue());</span>
+<span class="nc" id="L158">        break;</span>
       case LONG:
 <span class="nc" id="L160">        out.writeLong(((Number) datum).longValue());</span>
 <span class="nc" id="L161">        break;</span>
@@ -169,15 +169,15 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
 <span class="nc" id="L169">        out.writeBoolean((Boolean) datum);</span>
 <span class="nc" id="L170">        break;</span>
       case NULL:
-<span class="fc" id="L172">        out.writeNull();</span>
-<span class="fc" id="L173">        break;</span>
+<span class="nc" id="L172">        out.writeNull();</span>
+<span class="nc" id="L173">        break;</span>
       default:
 <span class="nc" id="L175">        error(schema, datum);</span>
       }
 <span class="nc" id="L177">    } catch (NullPointerException e) {</span>
 <span class="nc" id="L178">      throw npe(e, &quot; of &quot; + schema.getFullName());</span>
-<span class="fc" id="L179">    }</span>
-<span class="fc" id="L180">  }</span>
+<span class="nc" id="L179">    }</span>
+<span class="nc" id="L180">  }</span>
 
   /** Helper method for adding a message to an NPE . */
   protected NullPointerException npe(NullPointerException e, String s) {
@@ -205,20 +205,20 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
    * representations.
    */
   protected void writeRecord(Schema schema, Object datum, Encoder out) throws IOException {
-<span class="fc" id="L208">    Object state = data.getRecordState(datum, schema);</span>
-<span class="fc bfc" id="L209" title="All 2 branches covered.">    for (Field f : schema.getFields()) {</span>
-<span class="fc" id="L210">      writeField(datum, f, out, state);</span>
-<span class="fc" id="L211">    }</span>
-<span class="fc" id="L212">  }</span>
+<span class="nc" id="L208">    Object state = data.getRecordState(datum, schema);</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">    for (Field f : schema.getFields()) {</span>
+<span class="nc" id="L210">      writeField(datum, f, out, state);</span>
+<span class="nc" id="L211">    }</span>
+<span class="nc" id="L212">  }</span>
 
   /**
    * Called to write a single field of a record. May be overridden for more
    * efficient or alternate implementations.
    */
   protected void writeField(Object datum, Field f, Encoder out, Object state) throws IOException {
-<span class="fc" id="L219">    Object value = data.getField(datum, f.name(), f.pos(), state);</span>
+<span class="nc" id="L219">    Object value = data.getField(datum, f.name(), f.pos(), state);</span>
     try {
-<span class="fc" id="L221">      write(f.schema(), value, out);</span>
+<span class="nc" id="L221">      write(f.schema(), value, out);</span>
 <span class="nc" id="L222">    } catch (final UnresolvedUnionException uue) { // recreate it with the right field info</span>
 <span class="nc" id="L223">      final UnresolvedUnionException unresolvedUnionException = new UnresolvedUnionException(f.schema(), f, value);</span>
 <span class="nc" id="L224">      unresolvedUnionException.addSuppressed(uue);</span>
@@ -229,8 +229,8 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
 <span class="nc" id="L229">      throw addClassCastMsg(cce, &quot; in field &quot; + f.name());</span>
 <span class="nc" id="L230">    } catch (AvroTypeException ate) {</span>
 <span class="nc" id="L231">      throw addAvroTypeMsg(ate, &quot; in field &quot; + f.name());</span>
-<span class="fc" id="L232">    }</span>
-<span class="fc" id="L233">  }</span>
+<span class="nc" id="L232">    }</span>
+<span class="nc" id="L233">  }</span>
 
   /**
    * Called to write an enum value. May be overridden for alternate enum
@@ -247,29 +247,29 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
    * representations.
    */
   protected void writeArray(Schema schema, Object datum, Encoder out) throws IOException {
-<span class="fc" id="L250">    Schema element = schema.getElementType();</span>
-<span class="fc" id="L251">    long size = getArraySize(datum);</span>
-<span class="fc" id="L252">    long actualSize = 0;</span>
-<span class="fc" id="L253">    out.writeArrayStart();</span>
-<span class="fc" id="L254">    out.setItemCount(size);</span>
-<span class="fc bfc" id="L255" title="All 2 branches covered.">    for (Iterator&lt;? extends Object&gt; it = getArrayElements(datum); it.hasNext();) {</span>
-<span class="fc" id="L256">      out.startItem();</span>
-<span class="fc" id="L257">      write(element, it.next(), out);</span>
-<span class="fc" id="L258">      actualSize++;</span>
+<span class="nc" id="L250">    Schema element = schema.getElementType();</span>
+<span class="nc" id="L251">    long size = getArraySize(datum);</span>
+<span class="nc" id="L252">    long actualSize = 0;</span>
+<span class="nc" id="L253">    out.writeArrayStart();</span>
+<span class="nc" id="L254">    out.setItemCount(size);</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">    for (Iterator&lt;? extends Object&gt; it = getArrayElements(datum); it.hasNext();) {</span>
+<span class="nc" id="L256">      out.startItem();</span>
+<span class="nc" id="L257">      write(element, it.next(), out);</span>
+<span class="nc" id="L258">      actualSize++;</span>
     }
-<span class="fc" id="L260">    out.writeArrayEnd();</span>
-<span class="pc bpc" id="L261" title="1 of 2 branches missed.">    if (actualSize != size) {</span>
+<span class="nc" id="L260">    out.writeArrayEnd();</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">    if (actualSize != size) {</span>
 <span class="nc" id="L262">      throw new ConcurrentModificationException(</span>
           &quot;Size of array written was &quot; + size + &quot;, but number of elements written was &quot; + actualSize + &quot;. &quot;);
     }
-<span class="fc" id="L265">  }</span>
+<span class="nc" id="L265">  }</span>
 
   /**
    * Called to find the index for a datum within a union. By default calls
    * {@link GenericData#resolveUnion(Schema,Object)}.
    */
   protected int resolveUnion(Schema union, Object datum) {
-<span class="fc" id="L272">    return data.resolveUnion(union, datum);</span>
+<span class="nc" id="L272">    return data.resolveUnion(union, datum);</span>
   }
 
   /**
@@ -278,7 +278,7 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
    */
   @SuppressWarnings(&quot;unchecked&quot;)
   protected long getArraySize(Object array) {
-<span class="fc" id="L281">    return ((Collection) array).size();</span>
+<span class="nc" id="L281">    return ((Collection) array).size();</span>
   }
 
   /**
@@ -287,30 +287,30 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
    */
   @SuppressWarnings(&quot;unchecked&quot;)
   protected Iterator&lt;? extends Object&gt; getArrayElements(Object array) {
-<span class="fc" id="L290">    return ((Collection) array).iterator();</span>
+<span class="nc" id="L290">    return ((Collection) array).iterator();</span>
   }
 
   /**
    * Called to write a map. May be overridden for alternate map representations.
    */
   protected void writeMap(Schema schema, Object datum, Encoder out) throws IOException {
-<span class="fc" id="L297">    Schema value = schema.getValueType();</span>
-<span class="fc" id="L298">    int size = getMapSize(datum);</span>
-<span class="fc" id="L299">    int actualSize = 0;</span>
-<span class="fc" id="L300">    out.writeMapStart();</span>
-<span class="fc" id="L301">    out.setItemCount(size);</span>
-<span class="fc bfc" id="L302" title="All 2 branches covered.">    for (Map.Entry&lt;Object, Object&gt; entry : getMapEntries(datum)) {</span>
-<span class="fc" id="L303">      out.startItem();</span>
-<span class="fc" id="L304">      writeString(entry.getKey().toString(), out);</span>
-<span class="fc" id="L305">      write(value, entry.getValue(), out);</span>
-<span class="fc" id="L306">      actualSize++;</span>
-<span class="fc" id="L307">    }</span>
-<span class="fc" id="L308">    out.writeMapEnd();</span>
-<span class="pc bpc" id="L309" title="1 of 2 branches missed.">    if (actualSize != size) {</span>
+<span class="nc" id="L297">    Schema value = schema.getValueType();</span>
+<span class="nc" id="L298">    int size = getMapSize(datum);</span>
+<span class="nc" id="L299">    int actualSize = 0;</span>
+<span class="nc" id="L300">    out.writeMapStart();</span>
+<span class="nc" id="L301">    out.setItemCount(size);</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">    for (Map.Entry&lt;Object, Object&gt; entry : getMapEntries(datum)) {</span>
+<span class="nc" id="L303">      out.startItem();</span>
+<span class="nc" id="L304">      writeString(entry.getKey().toString(), out);</span>
+<span class="nc" id="L305">      write(value, entry.getValue(), out);</span>
+<span class="nc" id="L306">      actualSize++;</span>
+<span class="nc" id="L307">    }</span>
+<span class="nc" id="L308">    out.writeMapEnd();</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">    if (actualSize != size) {</span>
 <span class="nc" id="L310">      throw new ConcurrentModificationException(</span>
           &quot;Size of map written was &quot; + size + &quot;, but number of entries written was &quot; + actualSize + &quot;. &quot;);
     }
-<span class="fc" id="L313">  }</span>
+<span class="nc" id="L313">  }</span>
 
   /**
    * Called by the default implementation of {@link #writeMap} to get the size of
@@ -318,7 +318,7 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
    */
   @SuppressWarnings(&quot;unchecked&quot;)
   protected int getMapSize(Object map) {
-<span class="fc" id="L321">    return ((Map) map).size();</span>
+<span class="nc" id="L321">    return ((Map) map).size();</span>
   }
 
   /**
@@ -327,7 +327,7 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
    */
   @SuppressWarnings(&quot;unchecked&quot;)
   protected Iterable&lt;Map.Entry&lt;Object, Object&gt;&gt; getMapEntries(Object map) {
-<span class="fc" id="L330">    return ((Map) map).entrySet();</span>
+<span class="nc" id="L330">    return ((Map) map).entrySet();</span>
   }
 
   /**
@@ -343,8 +343,8 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
    * representations.
    */
   protected void writeString(Object datum, Encoder out) throws IOException {
-<span class="fc" id="L346">    out.writeString((CharSequence) datum);</span>
-<span class="fc" id="L347">  }</span>
+<span class="nc" id="L346">    out.writeString((CharSequence) datum);</span>
+<span class="nc" id="L347">  }</span>
 
   /**
    * Called to write a bytes. May be overridden for alternate bytes
@@ -359,8 +359,8 @@ public class GenericDatumWriter&lt;D&gt; implements DatumWriter&lt;D&gt; {
    * representations.
    */
   protected void writeFixed(Schema schema, Object datum, Encoder out) throws IOException {
-<span class="fc" id="L362">    out.writeFixed(((GenericFixed) datum).bytes(), 0, schema.getFixedSize());</span>
-<span class="fc" id="L363">  }</span>
+<span class="nc" id="L362">    out.writeFixed(((GenericFixed) datum).bytes(), 0, schema.getFixedSize());</span>
+<span class="nc" id="L363">  }</span>
 
   private void error(Schema schema, Object datum) {
 <span class="nc" id="L366">    throw new AvroTypeException(&quot;Not a &quot; + schema + &quot;: &quot; + datum);</span>
