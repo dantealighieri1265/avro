@@ -1,7 +1,9 @@
 org/apache/avro/file/codec/CustomCodec.class
+org/apache/avro/io/entity/CompareBytesEntity.class
 NoPackage.class
 org/apache/avro/io/entity/EncodeTestEntity.class
 org/apache/avro/io/LegacyBinaryEncoder$SimpleByteWriter.class
+org/apache/avro/io/TestCompareBytes.class
 org/apache/avro/specific/TestSpecificDataGetSchema.class
 org/apache/avro/FooBarSpecificRecord$Builder.class
 org/apache/avro/ByteBufferRecord.class

@@ -181,118 +181,129 @@ public class BinaryData {
    * return a positive value, if less than return a negative value.
    */
   public static int compareBytes(byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
-<span class="nc" id="L184">    int end1 = s1 + l1;</span>
-<span class="nc" id="L185">    int end2 = s2 + l2;</span>
-<span class="nc bnc" id="L186" title="All 4 branches missed.">    for (int i = s1, j = s2; i &lt; end1 &amp;&amp; j &lt; end2; i++, j++) {</span>
-<span class="nc" id="L187">      int a = (b1[i] &amp; 0xff);</span>
-<span class="nc" id="L188">      int b = (b2[j] &amp; 0xff);</span>
-<span class="nc bnc" id="L189" title="All 2 branches missed.">      if (a != b) {</span>
-<span class="nc" id="L190">        return a - b;</span>
+<span class="fc" id="L184">    int end1 = s1 + l1;</span>
+<span class="fc" id="L185">    int end2 = s2 + l2;</span>
+<span class="fc bfc" id="L186" title="All 4 branches covered.">    for (int i = s1, j = s2; i &lt; end1 &amp;&amp; j &lt; end2; i++, j++) {</span>
+<span class="fc" id="L187">      int a = (b1[i] &amp; 0xff);</span>
+<span class="fc" id="L188">      int b = (b2[j] &amp; 0xff);</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">      if (a != b) {</span>
+<span class="fc" id="L190">        return a - b;</span>
       }
     }
-<span class="nc" id="L193">    return l1 - l2;</span>
+<span class="fc" id="L193">    return l1 - l2;</span>
   }
+  
+
+  public static void main(String[] args) {
+<span class="nc" id="L198">	  byte[] b = &quot;ciao&quot;.getBytes();</span>
+<span class="nc" id="L199">	  byte[] b2 = &quot;ciao&quot;.getBytes();</span>
+	  
+<span class="nc" id="L201">	  System.out.println(compareBytes(b, 0, 0, b2, 0, 0));</span>
+//	  System.out.println(BitSet.valueOf(b));
+//	  encodeInt(2*128*128*128*128, b, 0);
+//	  System.out.println(BitSet.valueOf(b).hashCode());//{7, 15, 23, 31, 34}
+<span class="nc" id="L205">  }</span>
 
   private static class HashData {
     private final BinaryDecoder decoder;
 
-<span class="nc" id="L199">    public HashData() {</span>
-<span class="nc" id="L200">      this.decoder = new BinaryDecoder(new byte[0], 0, 0);</span>
-<span class="nc" id="L201">    }</span>
+<span class="nc" id="L210">    public HashData() {</span>
+<span class="nc" id="L211">      this.decoder = new BinaryDecoder(new byte[0], 0, 0);</span>
+<span class="nc" id="L212">    }</span>
 
     public void set(byte[] bytes, int start, int len) {
-<span class="nc" id="L204">      this.decoder.setBuf(bytes, start, len);</span>
-<span class="nc" id="L205">    }</span>
+<span class="nc" id="L215">      this.decoder.setBuf(bytes, start, len);</span>
+<span class="nc" id="L216">    }</span>
   }
 
-<span class="fc" id="L208">  private static final ThreadLocal&lt;HashData&gt; HASH_DATA = ThreadLocal.withInitial(HashData::new);</span>
+<span class="fc" id="L219">  private static final ThreadLocal&lt;HashData&gt; HASH_DATA = ThreadLocal.withInitial(HashData::new);</span>
 
   /**
    * Hash binary encoded data. Consistent with
    * {@link org.apache.avro.generic.GenericData#hashCode(Object, Schema)}.
    */
   public static int hashCode(byte[] bytes, int start, int length, Schema schema) {
-<span class="nc" id="L215">    HashData data = HASH_DATA.get();</span>
-<span class="nc" id="L216">    data.set(bytes, start, length);</span>
+<span class="nc" id="L226">    HashData data = HASH_DATA.get();</span>
+<span class="nc" id="L227">    data.set(bytes, start, length);</span>
     try {
-<span class="nc" id="L218">      return hashCode(data, schema);</span>
-<span class="nc" id="L219">    } catch (IOException e) {</span>
-<span class="nc" id="L220">      throw new AvroRuntimeException(e);</span>
+<span class="nc" id="L229">      return hashCode(data, schema);</span>
+<span class="nc" id="L230">    } catch (IOException e) {</span>
+<span class="nc" id="L231">      throw new AvroRuntimeException(e);</span>
     }
   }
 
   private static int hashCode(HashData data, Schema schema) throws IOException {
-<span class="nc" id="L225">    Decoder decoder = data.decoder;</span>
-<span class="nc bnc" id="L226" title="All 14 branches missed.">    switch (schema.getType()) {</span>
+<span class="nc" id="L236">    Decoder decoder = data.decoder;</span>
+<span class="nc bnc" id="L237" title="All 14 branches missed.">    switch (schema.getType()) {</span>
     case RECORD: {
-<span class="nc" id="L228">      int hashCode = 1;</span>
-<span class="nc bnc" id="L229" title="All 2 branches missed.">      for (Field field : schema.getFields()) {</span>
-<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (field.order() == Field.Order.IGNORE) {</span>
-<span class="nc" id="L231">          GenericDatumReader.skip(field.schema(), decoder);</span>
-<span class="nc" id="L232">          continue;</span>
+<span class="nc" id="L239">      int hashCode = 1;</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">      for (Field field : schema.getFields()) {</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">        if (field.order() == Field.Order.IGNORE) {</span>
+<span class="nc" id="L242">          GenericDatumReader.skip(field.schema(), decoder);</span>
+<span class="nc" id="L243">          continue;</span>
         }
-<span class="nc" id="L234">        hashCode = hashCode * 31 + hashCode(data, field.schema());</span>
-<span class="nc" id="L235">      }</span>
-<span class="nc" id="L236">      return hashCode;</span>
+<span class="nc" id="L245">        hashCode = hashCode * 31 + hashCode(data, field.schema());</span>
+<span class="nc" id="L246">      }</span>
+<span class="nc" id="L247">      return hashCode;</span>
     }
     case ENUM:
     case INT:
-<span class="nc" id="L240">      return decoder.readInt();</span>
+<span class="nc" id="L251">      return decoder.readInt();</span>
     case BOOLEAN:
-<span class="nc" id="L242">      return Boolean.hashCode(decoder.readBoolean());</span>
+<span class="nc" id="L253">      return Boolean.hashCode(decoder.readBoolean());</span>
     case FLOAT:
-<span class="nc" id="L244">      return Float.hashCode(decoder.readFloat());</span>
+<span class="nc" id="L255">      return Float.hashCode(decoder.readFloat());</span>
     case LONG:
-<span class="nc" id="L246">      return Long.hashCode(decoder.readLong());</span>
+<span class="nc" id="L257">      return Long.hashCode(decoder.readLong());</span>
     case DOUBLE:
-<span class="nc" id="L248">      return Double.hashCode(decoder.readDouble());</span>
+<span class="nc" id="L259">      return Double.hashCode(decoder.readDouble());</span>
     case ARRAY: {
-<span class="nc" id="L250">      Schema elementType = schema.getElementType();</span>
-<span class="nc" id="L251">      int hashCode = 1;</span>
-<span class="nc bnc" id="L252" title="All 2 branches missed.">      for (long l = decoder.readArrayStart(); l != 0; l = decoder.arrayNext()) {</span>
-<span class="nc bnc" id="L253" title="All 2 branches missed.">        for (long i = 0; i &lt; l; i++) {</span>
-<span class="nc" id="L254">          hashCode = hashCode * 31 + hashCode(data, elementType);</span>
+<span class="nc" id="L261">      Schema elementType = schema.getElementType();</span>
+<span class="nc" id="L262">      int hashCode = 1;</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">      for (long l = decoder.readArrayStart(); l != 0; l = decoder.arrayNext()) {</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">        for (long i = 0; i &lt; l; i++) {</span>
+<span class="nc" id="L265">          hashCode = hashCode * 31 + hashCode(data, elementType);</span>
         }
       }
-<span class="nc" id="L257">      return hashCode;</span>
+<span class="nc" id="L268">      return hashCode;</span>
     }
     case MAP:
-<span class="nc" id="L260">      throw new AvroRuntimeException(&quot;Can't hashCode maps!&quot;);</span>
+<span class="nc" id="L271">      throw new AvroRuntimeException(&quot;Can't hashCode maps!&quot;);</span>
     case UNION:
-<span class="nc" id="L262">      return hashCode(data, schema.getTypes().get(decoder.readInt()));</span>
+<span class="nc" id="L273">      return hashCode(data, schema.getTypes().get(decoder.readInt()));</span>
     case FIXED:
-<span class="nc" id="L264">      return hashBytes(1, data, schema.getFixedSize(), false);</span>
+<span class="nc" id="L275">      return hashBytes(1, data, schema.getFixedSize(), false);</span>
     case STRING:
-<span class="nc" id="L266">      return hashBytes(0, data, decoder.readInt(), false);</span>
+<span class="nc" id="L277">      return hashBytes(0, data, decoder.readInt(), false);</span>
     case BYTES:
-<span class="nc" id="L268">      return hashBytes(1, data, decoder.readInt(), true);</span>
+<span class="nc" id="L279">      return hashBytes(1, data, decoder.readInt(), true);</span>
     case NULL:
-<span class="nc" id="L270">      return 0;</span>
+<span class="nc" id="L281">      return 0;</span>
     default:
-<span class="nc" id="L272">      throw new AvroRuntimeException(&quot;Unexpected schema to hashCode!&quot;);</span>
+<span class="nc" id="L283">      throw new AvroRuntimeException(&quot;Unexpected schema to hashCode!&quot;);</span>
     }
   }
 
   private static int hashBytes(int init, HashData data, int len, boolean rev) throws IOException {
-<span class="nc" id="L277">    int hashCode = init;</span>
-<span class="nc" id="L278">    byte[] bytes = data.decoder.getBuf();</span>
-<span class="nc" id="L279">    int start = data.decoder.getPos();</span>
-<span class="nc" id="L280">    int end = start + len;</span>
-<span class="nc bnc" id="L281" title="All 2 branches missed.">    if (rev)</span>
-<span class="nc bnc" id="L282" title="All 2 branches missed.">      for (int i = end - 1; i &gt;= start; i--)</span>
-<span class="nc" id="L283">        hashCode = hashCode * 31 + bytes[i];</span>
+<span class="nc" id="L288">    int hashCode = init;</span>
+<span class="nc" id="L289">    byte[] bytes = data.decoder.getBuf();</span>
+<span class="nc" id="L290">    int start = data.decoder.getPos();</span>
+<span class="nc" id="L291">    int end = start + len;</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">    if (rev)</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">      for (int i = end - 1; i &gt;= start; i--)</span>
+<span class="nc" id="L294">        hashCode = hashCode * 31 + bytes[i];</span>
     else
-<span class="nc bnc" id="L285" title="All 2 branches missed.">      for (int i = start; i &lt; end; i++)</span>
-<span class="nc" id="L286">        hashCode = hashCode * 31 + bytes[i];</span>
-<span class="nc" id="L287">    data.decoder.skipFixed(len);</span>
-<span class="nc" id="L288">    return hashCode;</span>
+<span class="nc bnc" id="L296" title="All 2 branches missed.">      for (int i = start; i &lt; end; i++)</span>
+<span class="nc" id="L297">        hashCode = hashCode * 31 + bytes[i];</span>
+<span class="nc" id="L298">    data.decoder.skipFixed(len);</span>
+<span class="nc" id="L299">    return hashCode;</span>
   }
 
   /** Skip a binary-encoded long, returning the position after it. */
   public static int skipLong(final byte[] bytes, int start) {
-<span class="nc bnc" id="L293" title="All 2 branches missed.">    while ((bytes[start++] &amp; 0x80) != 0) {</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">    while ((bytes[start++] &amp; 0x80) != 0) {</span>
     }
-<span class="nc" id="L295">    return start;</span>
+<span class="nc" id="L306">    return start;</span>
   }
 
   /**
@@ -302,8 +313,8 @@ public class BinaryData {
    * @return The number of bytes written to the buffer, 1.
    */
   public static int encodeBoolean(boolean b, byte[] buf, int pos) {
-<span class="nc bnc" id="L305" title="All 2 branches missed.">    buf[pos] = b ? (byte) 1 : (byte) 0;</span>
-<span class="nc" id="L306">    return 1;</span>
+<span class="nc bnc" id="L316" title="All 2 branches missed.">    buf[pos] = b ? (byte) 1 : (byte) 0;</span>
+<span class="nc" id="L317">    return 1;</span>
   }
 
   /**
@@ -315,26 +326,26 @@ public class BinaryData {
    */
   public static int encodeInt(int n, byte[] buf, int pos) {
     // move sign to low-order bit, and flip others if negative
-<span class="fc" id="L318">    n = (n &lt;&lt; 1) ^ (n &gt;&gt; 31); // n*2 invertito se negativo</span>
-<span class="fc" id="L319">    int start = pos;</span>
-<span class="fc bfc" id="L320" title="All 2 branches covered.">    if ((n &amp; ~0x7F) != 0) {//1000.0000 n &gt;= 128</span>
-<span class="fc" id="L321">      buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);// n or 1000.0000 and 1111.1111 </span>
-<span class="fc" id="L322">      n &gt;&gt;&gt;= 7;									//	</span>
-<span class="fc bfc" id="L323" title="All 2 branches covered.">      if (n &gt; 0x7F) {</span>
-<span class="fc" id="L324">        buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="fc" id="L325">        n &gt;&gt;&gt;= 7;</span>
-<span class="fc bfc" id="L326" title="All 2 branches covered.">        if (n &gt; 0x7F) {</span>
-<span class="fc" id="L327">          buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="fc" id="L328">          n &gt;&gt;&gt;= 7;</span>
-<span class="fc bfc" id="L329" title="All 2 branches covered.">          if (n &gt; 0x7F) {</span>
-<span class="fc" id="L330">            buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="fc" id="L331">            n &gt;&gt;&gt;= 7;</span>
+<span class="fc" id="L329">    n = (n &lt;&lt; 1) ^ (n &gt;&gt; 31); // n*2 invertito se negativo</span>
+<span class="fc" id="L330">    int start = pos;</span>
+<span class="fc bfc" id="L331" title="All 2 branches covered.">    if ((n &amp; ~0x7F) != 0) {//1000.0000 n &gt;= 128</span>
+<span class="fc" id="L332">      buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);// n or 1000.0000 and 1111.1111 </span>
+<span class="fc" id="L333">      n &gt;&gt;&gt;= 7;									//	</span>
+<span class="fc bfc" id="L334" title="All 2 branches covered.">      if (n &gt; 0x7F) {</span>
+<span class="fc" id="L335">        buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="fc" id="L336">        n &gt;&gt;&gt;= 7;</span>
+<span class="fc bfc" id="L337" title="All 2 branches covered.">        if (n &gt; 0x7F) {</span>
+<span class="fc" id="L338">          buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="fc" id="L339">          n &gt;&gt;&gt;= 7;</span>
+<span class="fc bfc" id="L340" title="All 2 branches covered.">          if (n &gt; 0x7F) {</span>
+<span class="fc" id="L341">            buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="fc" id="L342">            n &gt;&gt;&gt;= 7;</span>
           }
         }
       }
     }
-<span class="fc" id="L336">    buf[pos++] = (byte) n;</span>
-<span class="fc" id="L337">    return pos - start;</span>
+<span class="fc" id="L347">    buf[pos++] = (byte) n;</span>
+<span class="fc" id="L348">    return pos - start;</span>
   }
 
   /**
@@ -346,35 +357,35 @@ public class BinaryData {
    */
   public static int encodeLong(long n, byte[] buf, int pos) {
     // move sign to low-order bit, and flip others if negative
-<span class="nc" id="L349">    n = (n &lt;&lt; 1) ^ (n &gt;&gt; 63);</span>
-<span class="nc" id="L350">    int start = pos;</span>
-<span class="nc bnc" id="L351" title="All 2 branches missed.">    if ((n &amp; ~0x7FL) != 0) {</span>
-<span class="nc" id="L352">      buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L353">      n &gt;&gt;&gt;= 7;</span>
-<span class="nc bnc" id="L354" title="All 2 branches missed.">      if (n &gt; 0x7F) {</span>
-<span class="nc" id="L355">        buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L356">        n &gt;&gt;&gt;= 7;</span>
-<span class="nc bnc" id="L357" title="All 2 branches missed.">        if (n &gt; 0x7F) {</span>
-<span class="nc" id="L358">          buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L359">          n &gt;&gt;&gt;= 7;</span>
-<span class="nc bnc" id="L360" title="All 2 branches missed.">          if (n &gt; 0x7F) {</span>
-<span class="nc" id="L361">            buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L362">            n &gt;&gt;&gt;= 7;</span>
-<span class="nc bnc" id="L363" title="All 2 branches missed.">            if (n &gt; 0x7F) {</span>
-<span class="nc" id="L364">              buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L365">              n &gt;&gt;&gt;= 7;</span>
-<span class="nc bnc" id="L366" title="All 2 branches missed.">              if (n &gt; 0x7F) {</span>
-<span class="nc" id="L367">                buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L368">                n &gt;&gt;&gt;= 7;</span>
-<span class="nc bnc" id="L369" title="All 2 branches missed.">                if (n &gt; 0x7F) {</span>
-<span class="nc" id="L370">                  buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L371">                  n &gt;&gt;&gt;= 7;</span>
-<span class="nc bnc" id="L372" title="All 2 branches missed.">                  if (n &gt; 0x7F) {</span>
-<span class="nc" id="L373">                    buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L374">                    n &gt;&gt;&gt;= 7;</span>
-<span class="nc bnc" id="L375" title="All 2 branches missed.">                    if (n &gt; 0x7F) {</span>
-<span class="nc" id="L376">                      buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
-<span class="nc" id="L377">                      n &gt;&gt;&gt;= 7;</span>
+<span class="nc" id="L360">    n = (n &lt;&lt; 1) ^ (n &gt;&gt; 63);</span>
+<span class="nc" id="L361">    int start = pos;</span>
+<span class="nc bnc" id="L362" title="All 2 branches missed.">    if ((n &amp; ~0x7FL) != 0) {</span>
+<span class="nc" id="L363">      buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L364">      n &gt;&gt;&gt;= 7;</span>
+<span class="nc bnc" id="L365" title="All 2 branches missed.">      if (n &gt; 0x7F) {</span>
+<span class="nc" id="L366">        buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L367">        n &gt;&gt;&gt;= 7;</span>
+<span class="nc bnc" id="L368" title="All 2 branches missed.">        if (n &gt; 0x7F) {</span>
+<span class="nc" id="L369">          buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L370">          n &gt;&gt;&gt;= 7;</span>
+<span class="nc bnc" id="L371" title="All 2 branches missed.">          if (n &gt; 0x7F) {</span>
+<span class="nc" id="L372">            buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L373">            n &gt;&gt;&gt;= 7;</span>
+<span class="nc bnc" id="L374" title="All 2 branches missed.">            if (n &gt; 0x7F) {</span>
+<span class="nc" id="L375">              buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L376">              n &gt;&gt;&gt;= 7;</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">              if (n &gt; 0x7F) {</span>
+<span class="nc" id="L378">                buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L379">                n &gt;&gt;&gt;= 7;</span>
+<span class="nc bnc" id="L380" title="All 2 branches missed.">                if (n &gt; 0x7F) {</span>
+<span class="nc" id="L381">                  buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L382">                  n &gt;&gt;&gt;= 7;</span>
+<span class="nc bnc" id="L383" title="All 2 branches missed.">                  if (n &gt; 0x7F) {</span>
+<span class="nc" id="L384">                    buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L385">                    n &gt;&gt;&gt;= 7;</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">                    if (n &gt; 0x7F) {</span>
+<span class="nc" id="L387">                      buf[pos++] = (byte) ((n | 0x80) &amp; 0xFF);</span>
+<span class="nc" id="L388">                      n &gt;&gt;&gt;= 7;</span>
                     }
                   }
                 }
@@ -384,8 +395,8 @@ public class BinaryData {
         }
       }
     }
-<span class="nc" id="L387">    buf[pos++] = (byte) n;</span>
-<span class="nc" id="L388">    return pos - start;</span>
+<span class="nc" id="L398">    buf[pos++] = (byte) n;</span>
+<span class="nc" id="L399">    return pos - start;</span>
   }
 
   /**
@@ -396,12 +407,12 @@ public class BinaryData {
    * @return Returns the number of bytes written to the buffer, 4.
    */
   public static int encodeFloat(float f, byte[] buf, int pos) {
-<span class="nc" id="L399">    final int bits = Float.floatToRawIntBits(f);</span>
-<span class="nc" id="L400">    buf[pos + 3] = (byte) (bits &gt;&gt;&gt; 24);</span>
-<span class="nc" id="L401">    buf[pos + 2] = (byte) (bits &gt;&gt;&gt; 16);</span>
-<span class="nc" id="L402">    buf[pos + 1] = (byte) (bits &gt;&gt;&gt; 8);</span>
-<span class="nc" id="L403">    buf[pos] = (byte) (bits);</span>
-<span class="nc" id="L404">    return 4;</span>
+<span class="nc" id="L410">    final int bits = Float.floatToRawIntBits(f);</span>
+<span class="nc" id="L411">    buf[pos + 3] = (byte) (bits &gt;&gt;&gt; 24);</span>
+<span class="nc" id="L412">    buf[pos + 2] = (byte) (bits &gt;&gt;&gt; 16);</span>
+<span class="nc" id="L413">    buf[pos + 1] = (byte) (bits &gt;&gt;&gt; 8);</span>
+<span class="nc" id="L414">    buf[pos] = (byte) (bits);</span>
+<span class="nc" id="L415">    return 4;</span>
   }
 
   /**
@@ -412,27 +423,21 @@ public class BinaryData {
    * @return Returns the number of bytes written to the buffer, 8.
    */
   public static int encodeDouble(double d, byte[] buf, int pos) {
-<span class="nc" id="L415">    final long bits = Double.doubleToRawLongBits(d);</span>
-<span class="nc" id="L416">    int first = (int) (bits &amp; 0xFFFFFFFF);</span>
-<span class="nc" id="L417">    int second = (int) ((bits &gt;&gt;&gt; 32) &amp; 0xFFFFFFFF);</span>
+<span class="nc" id="L426">    final long bits = Double.doubleToRawLongBits(d);</span>
+<span class="nc" id="L427">    int first = (int) (bits &amp; 0xFFFFFFFF);</span>
+<span class="nc" id="L428">    int second = (int) ((bits &gt;&gt;&gt; 32) &amp; 0xFFFFFFFF);</span>
     // the compiler seems to execute this order the best, likely due to
     // register allocation -- the lifetime of constants is minimized.
-<span class="nc" id="L420">    buf[pos] = (byte) (first);</span>
-<span class="nc" id="L421">    buf[pos + 4] = (byte) (second);</span>
-<span class="nc" id="L422">    buf[pos + 5] = (byte) (second &gt;&gt;&gt; 8);</span>
-<span class="nc" id="L423">    buf[pos + 1] = (byte) (first &gt;&gt;&gt; 8);</span>
-<span class="nc" id="L424">    buf[pos + 2] = (byte) (first &gt;&gt;&gt; 16);</span>
-<span class="nc" id="L425">    buf[pos + 6] = (byte) (second &gt;&gt;&gt; 16);</span>
-<span class="nc" id="L426">    buf[pos + 7] = (byte) (second &gt;&gt;&gt; 24);</span>
-<span class="nc" id="L427">    buf[pos + 3] = (byte) (first &gt;&gt;&gt; 24);</span>
-<span class="nc" id="L428">    return 8;</span>
+<span class="nc" id="L431">    buf[pos] = (byte) (first);</span>
+<span class="nc" id="L432">    buf[pos + 4] = (byte) (second);</span>
+<span class="nc" id="L433">    buf[pos + 5] = (byte) (second &gt;&gt;&gt; 8);</span>
+<span class="nc" id="L434">    buf[pos + 1] = (byte) (first &gt;&gt;&gt; 8);</span>
+<span class="nc" id="L435">    buf[pos + 2] = (byte) (first &gt;&gt;&gt; 16);</span>
+<span class="nc" id="L436">    buf[pos + 6] = (byte) (second &gt;&gt;&gt; 16);</span>
+<span class="nc" id="L437">    buf[pos + 7] = (byte) (second &gt;&gt;&gt; 24);</span>
+<span class="nc" id="L438">    buf[pos + 3] = (byte) (first &gt;&gt;&gt; 24);</span>
+<span class="nc" id="L439">    return 8;</span>
   }
-  public static void main(String[] args) {
-<span class="nc" id="L431">	  byte[] b = new byte[5];</span>
-<span class="nc" id="L432">	  System.out.println(BitSet.valueOf(b));</span>
-<span class="nc" id="L433">	  encodeInt(2*128*128*128*128, b, 0);</span>
-<span class="nc" id="L434">	  System.out.println(BitSet.valueOf(b).hashCode());//{7, 15, 23, 31, 34}</span>
-<span class="nc" id="L435">}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

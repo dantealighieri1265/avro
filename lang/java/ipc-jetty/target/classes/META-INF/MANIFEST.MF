@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.apache.avro.ipc.jetty
-Bnd-LastModified: 1607531340464
+Bnd-LastModified: 1607543411522
 Build-Jdk: 11.0.9.1
 Built-By: giuseppe
 Bundle-Description: Avro inter-process communication components using Je

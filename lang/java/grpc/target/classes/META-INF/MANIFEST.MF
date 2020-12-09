@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.apache.avro.grpc
-Bnd-LastModified: 1607531363484
+Bnd-LastModified: 1607543423844
 Build-Jdk: 11.0.9.1
 Built-By: giuseppe
 Bundle-Description: Avro IDL based RPC and serialization over gRPC

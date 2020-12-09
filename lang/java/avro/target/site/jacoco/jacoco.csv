@@ -244,7 +244,7 @@ Apache Avro,org.apache.avro.io,JsonEncoder.new DefaultPrettyPrinter() {...},7,0,
 Apache Avro,org.apache.avro.io,FastReaderBuilder,1134,0,115,0,212,0,147,0,78,0
 Apache Avro,org.apache.avro.io,JsonEncoder,513,0,36,0,130,0,48,0,30,0
 Apache Avro,org.apache.avro.io,ResolvingDecoder,586,0,96,0,122,0,67,0,19,0
-Apache Avro,org.apache.avro.io,BinaryData,927,96,95,8,180,18,72,6,13,2
+Apache Avro,org.apache.avro.io,BinaryData,881,140,89,14,171,26,68,10,12,3
 Apache Avro,org.apache.avro.io,FastReaderBuilder.RecordReader,62,0,2,0,17,0,8,0,7,0
 Apache Avro,org.apache.avro.io,BinaryEncoder,93,0,8,0,37,0,18,0,14,0
 Apache Avro,org.apache.avro.io,JsonDecoder.ReorderBuffer,11,0,0,0,3,0,1,0,1,0

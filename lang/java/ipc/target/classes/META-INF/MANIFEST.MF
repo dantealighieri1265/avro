@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.apache.avro.ipc
-Bnd-LastModified: 1607531339467
+Bnd-LastModified: 1607543410844
 Build-Jdk: 11.0.9.1
 Built-By: giuseppe
 Bundle-Description: Avro inter-process communication components

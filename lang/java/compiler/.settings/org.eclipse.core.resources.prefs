@@ -3,4 +3,6 @@ encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/velocity=UTF-8
 encoding//src/test/idl=UTF-8
+encoding//target/generated-sources/javacc=UTF-8
+encoding//target/generated-test-sources=UTF-8
 encoding/<project>=UTF-8

@@ -17,7 +17,7 @@ public class TestEncodeInt {
 	private Object expectedResult;
 	
 	@Parameterized.Parameters
-	public static Collection<Object[]> BufferedChannelParameters() throws Exception {
+	public static Collection<Object[]> EncodeIntParameters() throws Exception {
 		return Arrays.asList(new Object[][] {
 			
 			// Suite minimale

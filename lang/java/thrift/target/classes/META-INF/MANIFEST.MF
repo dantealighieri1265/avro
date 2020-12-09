@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.apache.avro.thrift
-Bnd-LastModified: 1607531360008
+Bnd-LastModified: 1607543422719
 Build-Jdk: 11.0.9.1
 Built-By: giuseppe
 Bundle-Description: Permit serialization of Thrift-generated classes as 
