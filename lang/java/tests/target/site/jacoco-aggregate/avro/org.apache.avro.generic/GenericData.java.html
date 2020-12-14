@@ -69,8 +69,8 @@ public class GenericData {
 <span class="fc" id="L69">  private static final GenericData INSTANCE = new GenericData();</span>
 
   /** Used to specify the Java type for a string schema. */
-<span class="nc" id="L72">  public enum StringType {</span>
-<span class="nc" id="L73">    CharSequence, String, Utf8</span>
+<span class="fc" id="L72">  public enum StringType {</span>
+<span class="fc" id="L73">    CharSequence, String, Utf8</span>
   };
 
   public static final String STRING_PROP = &quot;avro.java.string&quot;;
@@ -85,9 +85,9 @@ public class GenericData {
   public static void setStringType(Schema s, StringType stringType) {
     // Utf8 is the default and implements CharSequence, so we only need to add
     // a property when the type is String
-<span class="nc bnc" id="L88" title="All 2 branches missed.">    if (stringType == StringType.String)</span>
-<span class="nc" id="L89">      s.addProp(GenericData.STRING_PROP, GenericData.STRING_TYPE_STRING);</span>
-<span class="nc" id="L90">  }</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">    if (stringType == StringType.String)</span>
+<span class="fc" id="L89">      s.addProp(GenericData.STRING_PROP, GenericData.STRING_TYPE_STRING);</span>
+<span class="fc" id="L90">  }</span>
 
   /** Return the singleton instance. */
   public static GenericData get() {
@@ -106,7 +106,7 @@ public class GenericData {
 
   /** Return the class loader that's used (by subclasses). */
   public ClassLoader getClassLoader() {
-<span class="nc" id="L109">    return classLoader;</span>
+<span class="fc" id="L109">    return classLoader;</span>
   }
 
 <span class="fc" id="L112">  private Map&lt;String, Conversion&lt;?&gt;&gt; conversions = new HashMap&lt;&gt;();</span>

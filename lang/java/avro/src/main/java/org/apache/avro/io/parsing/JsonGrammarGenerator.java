@@ -17,11 +17,14 @@
  */
 package org.apache.avro.io.parsing;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.avro.Schema;
 import org.apache.avro.Schema.Field;
+import org.apache.avro.Schema.Type;
 
 /**
  * The class that generates a grammar suitable to parse Avro data in JSON
@@ -94,5 +97,15 @@ public class JsonGrammarGenerator extends ValidatingGrammarGenerator {
     default:
       throw new RuntimeException("Unexpected schema type");
     }
+  }
+  public static void main(String[] args) {
+	Schema sc = Schema.create(Type.INT);
+	List<Schema.Field> l = new ArrayList<Schema.Field>();
+	l.add(new Field("int", Schema.create(Type.INT)));
+	Schema sc1 = Schema.createRecord("RC", "Doc", "NS", false, l);
+	JsonGrammarGenerator jgg = new JsonGrammarGenerator();
+	Symbol sy = jgg.generate(sc);
+	Symbol sym = jgg.generate(sc1);
+	System.out.printf("%s %s\n",sy.kind, sym.kind);
   }
 }

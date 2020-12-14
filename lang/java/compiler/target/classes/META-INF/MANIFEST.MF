@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.apache.avro.compiler
-Bnd-LastModified: 1607543404959
+Bnd-LastModified: 1607982868187
 Build-Jdk: 11.0.9.1
 Built-By: giuseppe
 Bundle-Description: Compilers for Avro IDL and Avro Specific Java API

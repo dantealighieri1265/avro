@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import org.apache.avro.AvroTypeException;
+import org.apache.avro.io.parsing.Symbol.Kind;
 
 /**
  * Parser is the class that maintains the stack for parsing. This class is used

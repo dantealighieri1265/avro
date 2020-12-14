@@ -18,6 +18,7 @@
 package org.apache.avro.specific;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -154,6 +155,7 @@ public class SpecificData extends GenericData {
     return SpecificData.get();
   }
 
+
   /**
    * If the given class is assignable to {@link SpecificRecordBase}, this method
    * returns the SpecificData instance from the field {@code MODEL$}, in order to
@@ -231,7 +233,7 @@ public class SpecificData extends GenericData {
   private static final Class NO_CLASS = new Object() {
   }.getClass();
   private static final Schema NULL_SCHEMA = Schema.create(Schema.Type.NULL);
-
+ 
   /** Return the class that implements a schema, or null if none exists. */
   public Class getClass(Schema schema) {
     switch (schema.getType()) {
@@ -284,7 +286,7 @@ public class SpecificData extends GenericData {
       throw new AvroRuntimeException("Unknown type: " + schema);
     }
   }
-
+  
   private Class getWrapper(Schema schema) {
     switch (schema.getType()) {
     case INT:
@@ -319,7 +321,7 @@ public class SpecificData extends GenericData {
       return name;
     return namespace + "$" + name;
   }
-
+ 
   // cache for schemas created from Class objects. Use ClassValue to avoid
   // locking classloaders and is GC and thread safe.
   private final ClassValue<Schema> schemaClassCache = new ClassValue<Schema>() {

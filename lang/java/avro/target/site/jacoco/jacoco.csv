@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 Apache Avro,org.apache.avro.util,WeakIdentityHashMap.new Map.Entry() {...},22,0,0,0,4,0,4,0,4,0
-Apache Avro,org.apache.avro.util,ClassUtils,89,0,20,0,23,0,14,0,4,0
+Apache Avro,org.apache.avro.util,ClassUtils,40,49,12,8,9,14,10,4,2,2
 Apache Avro,org.apache.avro.util,ByteBufferInputStream,125,0,20,0,38,0,15,0,5,0
 Apache Avro,org.apache.avro.util,RandomData.new Iterator() {...},44,0,2,0,6,0,5,0,4,0
 Apache Avro,org.apache.avro.util,RandomData,386,0,39,0,69,0,36,0,10,0
@@ -12,14 +12,14 @@ Apache Avro,org.apache.avro.util,ReusableByteArrayInputStream,23,0,0,0,7,0,2,0,2
 Apache Avro,org.apache.avro.util,ByteBufferOutputStream,193,0,12,0,47,0,15,0,9,0
 Apache Avro,org.apache.avro.generic,GenericData.Record,199,0,20,0,38,0,21,0,11,0
 Apache Avro,org.apache.avro.generic,GenericArray,4,0,0,0,3,0,2,0,2,0
-Apache Avro,org.apache.avro.generic,GenericData.StringType,34,0,0,0,2,0,1,0,1,0
+Apache Avro,org.apache.avro.generic,GenericData.StringType,0,34,0,0,0,2,0,1,0,1
 Apache Avro,org.apache.avro.generic,GenericRecordBuilder,290,0,22,0,59,0,31,0,20,0
 Apache Avro,org.apache.avro.generic,GenericData.Fixed,78,0,6,0,22,0,14,0,11,0
 Apache Avro,org.apache.avro.generic,GenericDatumReader,980,0,108,0,213,0,112,0,45,0
 Apache Avro,org.apache.avro.generic,GenericRecord,9,0,2,0,1,0,2,0,1,0
 Apache Avro,org.apache.avro.generic,GenericData.Array,343,0,30,0,64,0,31,0,16,0
 Apache Avro,org.apache.avro.generic,GenericData.Array.new Iterator() {...},35,0,2,0,5,0,5,0,4,0
-Apache Avro,org.apache.avro.generic,GenericData,2126,47,348,1,466,12,260,3,58,3
+Apache Avro,org.apache.avro.generic,GenericData,2115,58,347,2,462,16,258,5,56,5
 Apache Avro,org.apache.avro.generic,GenericDatumWriter,606,0,43,0,142,0,56,0,28,0
 Apache Avro,org.apache.avro.generic,GenericData.EnumSymbol,50,0,6,0,13,0,10,0,7,0
 Apache Avro,org.apache.avro.data,TimeConversions.LocalTimestampMillisConversion,39,0,0,0,9,0,6,0,6,0
@@ -70,21 +70,21 @@ Apache Avro,org.apache.avro,JsonProperties.new Accessor.JsonPropertiesAccessor()
 Apache Avro,org.apache.avro,SchemaBuilder.FixedDefault,19,0,0,0,6,0,5,0,5,0
 Apache Avro,org.apache.avro,Resolver.EnumAdjust,151,0,22,0,25,0,13,0,2,0
 Apache Avro,org.apache.avro,SchemaBuilder.PrimitiveBuilder,32,0,2,0,9,0,3,0,2,0
-Apache Avro,org.apache.avro,JsonProperties.new ConcurrentHashMap() {...},29,11,2,0,6,2,4,1,3,1
+Apache Avro,org.apache.avro,JsonProperties.new ConcurrentHashMap() {...},5,35,1,1,1,7,2,3,1,3
 Apache Avro,org.apache.avro,SchemaBuilder.RecordBuilder,41,0,0,0,7,0,4,0,4,0
 Apache Avro,org.apache.avro,SchemaBuilder.NullableCompletion,25,0,0,0,5,0,2,0,2,0
 Apache Avro,org.apache.avro,SchemaBuilder.IntDefault,11,0,0,0,4,0,3,0,3,0
 Apache Avro,org.apache.avro,Conversions.UUIDConversion,19,0,0,0,6,0,6,0,6,0
 Apache Avro,org.apache.avro,SchemaBuilder.DoubleBuilder,17,0,0,0,5,0,4,0,4,0
 Apache Avro,org.apache.avro,SchemaBuilder.EnumDefault,10,0,0,0,4,0,3,0,3,0
-Apache Avro,org.apache.avro,Schema.Field.Order,45,0,0,0,5,0,2,0,2,0
+Apache Avro,org.apache.avro,Schema.Field.Order,0,45,0,0,0,5,0,2,0,2
 Apache Avro,org.apache.avro,SchemaValidationException,30,0,0,0,5,0,3,0,3,0
-Apache Avro,org.apache.avro,Schema.FixedSchema,104,0,18,0,25,0,14,0,5,0
-Apache Avro,org.apache.avro,JsonProperties,273,22,30,0,47,6,29,2,14,2
+Apache Avro,org.apache.avro,Schema.FixedSchema,93,11,17,1,21,4,13,1,4,1
+Apache Avro,org.apache.avro,JsonProperties,224,71,24,6,36,17,23,8,9,7
 Apache Avro,org.apache.avro,Conversion,341,0,0,0,27,0,27,0,27,0
 Apache Avro,org.apache.avro,Schema.SerializableSchema,7,0,0,0,1,0,1,0,1,0
 Apache Avro,org.apache.avro,Protocol.Message,159,0,14,0,46,0,20,0,13,0
-Apache Avro,org.apache.avro,Schema.NamedSchema,180,0,20,0,41,0,23,0,13,0
+Apache Avro,org.apache.avro,Schema.NamedSchema,153,27,19,1,33,8,19,4,9,4
 Apache Avro,org.apache.avro,SchemaCompatibility.SchemaIncompatibilityType,64,0,0,0,3,0,1,0,1,0
 Apache Avro,org.apache.avro,AvroRuntimeException,9,4,0,0,4,2,2,1,2,1
 Apache Avro,org.apache.avro,SchemaBuilder.UnionFieldTypeBuilder,218,0,0,0,26,0,23,0,23,0
@@ -109,10 +109,10 @@ Apache Avro,org.apache.avro,SchemaBuilder.FixedBuilder,33,0,0,0,7,0,4,0,4,0
 Apache Avro,org.apache.avro,ValidateCanBeRead,7,0,0,0,3,0,2,0,2,0
 Apache Avro,org.apache.avro,Schema.IntSchema,0,4,0,0,0,2,0,1,0,1
 Apache Avro,org.apache.avro,SchemaBuilder.NullDefault,10,0,0,0,4,0,3,0,3,0
-Apache Avro,org.apache.avro,JsonProperties.2.new AbstractSet() {...},16,0,0,0,3,0,3,0,3,0
+Apache Avro,org.apache.avro,JsonProperties.2.new AbstractSet() {...},5,11,0,0,1,2,1,2,1,2
 Apache Avro,org.apache.avro,SchemaBuilder.LongBuilder,17,0,0,0,5,0,4,0,4,0
-Apache Avro,org.apache.avro,Schema.EnumSchema,199,0,28,0,40,0,22,0,8,0
-Apache Avro,org.apache.avro,Schema.Field,272,0,36,0,57,0,39,0,21,0
+Apache Avro,org.apache.avro,Schema.EnumSchema,153,46,24,4,30,10,20,2,7,1
+Apache Avro,org.apache.avro,Schema.Field,217,55,35,1,44,13,35,4,17,4
 Apache Avro,org.apache.avro,SchemaBuilder.NameContext,220,0,18,0,46,0,17,0,8,0
 Apache Avro,org.apache.avro,Schema.FloatSchema,0,4,0,0,0,2,0,1,0,1
 Apache Avro,org.apache.avro,Resolver.ReaderUnion,232,0,54,0,57,0,33,0,4,0
@@ -136,18 +136,18 @@ Apache Avro,org.apache.avro,SchemaBuilder.MapCompletion,9,0,0,0,3,0,2,0,2,0
 Apache Avro,org.apache.avro,SchemaCompatibility.SchemaCompatibilityType,34,0,0,0,3,0,1,0,1,0
 Apache Avro,org.apache.avro,SchemaNormalization.FP64,38,0,4,0,8,0,3,0,1,0
 Apache Avro,org.apache.avro,SchemaParseException,8,0,0,0,4,0,2,0,2,0
-Apache Avro,org.apache.avro,Schema.Name,146,0,26,0,31,0,19,0,6,0
+Apache Avro,org.apache.avro,Schema.Name,101,45,20,6,21,10,16,3,5,1
 Apache Avro,org.apache.avro,LogicalTypes.LocalTimestampMillis,17,0,2,0,6,0,3,0,2,0
 Apache Avro,org.apache.avro,SchemaBuilder.SchemaCompletion,6,0,0,0,2,0,2,0,2,0
 Apache Avro,org.apache.avro,SchemaBuilder.StringBldr,17,0,0,0,5,0,4,0,4,0
 Apache Avro,org.apache.avro,AvroTypeException,5,4,0,0,2,2,1,1,1,1
-Apache Avro,org.apache.avro,Schema.UnionSchema,178,0,22,0,32,0,18,0,7,0
+Apache Avro,org.apache.avro,Schema.UnionSchema,128,50,17,5,20,12,15,3,5,2
 Apache Avro,org.apache.avro,Resolver.DoNothing,7,0,0,0,2,0,1,0,1,0
 Apache Avro,org.apache.avro,UnknownAvroCodecException,4,0,0,0,2,0,1,0,1,0
 Apache Avro,org.apache.avro,SchemaBuilder.ArrayDefault,10,0,0,0,4,0,3,0,3,0
 Apache Avro,org.apache.avro,SchemaBuilder.BaseTypeBuilder,158,0,0,0,30,0,27,0,27,0
 Apache Avro,org.apache.avro,ValidateAll,23,0,2,0,7,0,3,0,2,0
-Apache Avro,org.apache.avro,JsonProperties.2.1.new Iterator() {...},22,0,0,0,4,0,3,0,3,0
+Apache Avro,org.apache.avro,JsonProperties.2.1.new Iterator() {...},5,17,0,0,1,3,1,2,1,2
 Apache Avro,org.apache.avro,SchemaBuilder.BytesDefault,19,0,0,0,6,0,5,0,5,0
 Apache Avro,org.apache.avro,Schema.BooleanSchema,0,4,0,0,0,2,0,1,0,1
 Apache Avro,org.apache.avro,Resolver.ErrorAction.ErrorType,54,0,0,0,6,0,1,0,1,0
@@ -160,11 +160,11 @@ Apache Avro,org.apache.avro,Schema.DoubleSchema,0,4,0,0,0,2,0,1,0,1
 Apache Avro,org.apache.avro,Schema.ArraySchema,61,7,10,0,15,3,9,1,4,1
 Apache Avro,org.apache.avro,SchemaBuilder.StringDefault,10,0,0,0,4,0,3,0,3,0
 Apache Avro,org.apache.avro,Protocol,1130,0,102,0,219,0,92,0,41,0
-Apache Avro,org.apache.avro,Schema.RecordSchema,406,0,52,0,101,0,36,0,10,0
+Apache Avro,org.apache.avro,Schema.RecordSchema,332,74,47,5,83,18,33,3,8,2
 Apache Avro,org.apache.avro,Resolver.Action.Type,94,0,0,0,2,0,1,0,1,0
 Apache Avro,org.apache.avro,LogicalTypes.TimeMicros,17,0,2,0,6,0,3,0,2,0
-Apache Avro,org.apache.avro,Schema.LockableArrayList,93,0,2,0,32,0,15,0,14,0
-Apache Avro,org.apache.avro,Schema.Field.new Accessor.FieldAccessor() {...},26,0,0,0,4,0,4,0,4,0
+Apache Avro,org.apache.avro,Schema.LockableArrayList,64,29,1,1,21,11,10,5,9,5
+Apache Avro,org.apache.avro,Schema.Field.new Accessor.FieldAccessor() {...},23,3,0,0,3,1,3,1,3,1
 Apache Avro,org.apache.avro,SchemaCompatibility.ReaderWriter,54,0,6,0,10,0,7,0,4,0
 Apache Avro,org.apache.avro,SchemaBuilder.EnumBuilder,45,0,0,0,10,0,5,0,5,0
 Apache Avro,org.apache.avro,LogicalTypes.LogicalTypeFactory,4,0,0,0,1,0,1,0,1,0
@@ -190,7 +190,7 @@ Apache Avro,org.apache.avro,SchemaBuilder.ArrayCompletion,9,0,0,0,3,0,2,0,2,0
 Apache Avro,org.apache.avro,Schema.NullSchema,0,4,0,0,0,2,0,1,0,1
 Apache Avro,org.apache.avro,Resolver.ErrorAction,88,0,9,0,13,0,7,0,2,0
 Apache Avro,org.apache.avro,SchemaBuilder.FloatBuilder,17,0,0,0,5,0,4,0,4,0
-Apache Avro,org.apache.avro,Schema,1958,228,269,9,361,40,209,13,65,6
+Apache Avro,org.apache.avro,Schema,1812,374,253,25,334,67,193,29,52,19
 Apache Avro,org.apache.avro,SchemaBuilder.MapBuilder,41,0,0,0,8,0,5,0,5,0
 Apache Avro,org.apache.avro,ValidateMutualRead,36,0,2,0,11,0,4,0,3,0
 Apache Avro,org.apache.avro,Schema.LongSchema,0,4,0,0,0,2,0,1,0,1
@@ -206,7 +206,7 @@ Apache Avro,org.apache.avro,AvroMissingFieldException,59,0,2,0,11,0,4,0,3,0
 Apache Avro,org.apache.avro,SchemaBuilderException,8,0,0,0,4,0,2,0,2,0
 Apache Avro,org.apache.avro,SchemaBuilder.PropBuilder,67,0,8,0,15,0,10,0,6,0
 Apache Avro,org.apache.avro.specific,SpecificRecordBuilderBase,20,0,0,0,6,0,3,0,3,0
-Apache Avro,org.apache.avro.specific,SpecificData,677,518,96,45,141,60,87,26,29,6
+Apache Avro,org.apache.avro.specific,SpecificData,512,683,65,76,102,99,64,49,24,11
 Apache Avro,org.apache.avro.specific,SpecificDatumWriter,134,0,18,0,37,0,19,0,10,0
 Apache Avro,org.apache.avro.specific,SpecificData.new ClassValue() {...},0,14,0,0,0,2,0,2,0,2
 Apache Avro,org.apache.avro.specific,SpecificData.new Object() {...},0,3,0,0,0,1,0,1,0,1
@@ -278,7 +278,7 @@ Apache Avro,org.apache.avro.reflect,ReflectData,2286,0,326,0,466,0,219,0,54,0
 Apache Avro,org.apache.avro.reflect,ReflectDatumReader,613,0,84,0,142,0,61,0,19,0
 Apache Avro,org.apache.avro.reflect,FieldAccessUnsafe.UnsafeDoubleField,36,0,0,0,9,0,5,0,5,0
 Apache Avro,org.apache.avro.reflect,FieldAccessUnsafe.UnsafeIntField,36,0,0,0,9,0,5,0,5,0
-Apache Avro,org.apache.avro.reflect,MapEntry,23,0,0,0,9,0,4,0,4,0
+Apache Avro,org.apache.avro.reflect,MapEntry,14,9,0,0,5,4,3,1,3,1
 Apache Avro,org.apache.avro.reflect,FieldAccessUnsafe.UnsafeObjectField,19,0,0,0,6,0,4,0,4,0
 Apache Avro,org.apache.avro.reflect,FieldAccessUnsafe.UnsafeByteField,37,0,0,0,9,0,5,0,5,0
 Apache Avro,org.apache.avro.reflect,FieldAccessUnsafe.UnsafeCharField,37,0,0,0,9,0,5,0,5,0
@@ -297,18 +297,18 @@ Apache Avro,org.apache.avro.reflect,ArrayAccessor,511,0,70,0,121,0,51,0,16,0
 Apache Avro,org.apache.avro.reflect,FieldAccessUnsafe.UnsafeCachedField,24,0,0,0,8,0,4,0,4,0
 Apache Avro,org.apache.avro.reflect,FieldAccessUnsafe.UnsafeShortField,37,0,0,0,9,0,5,0,5,0
 Apache Avro,org.apache.avro.reflect,ReflectData.ClassAccessorData,138,0,12,0,26,0,10,0,4,0
-Apache Avro,org.apache.avro.util.internal,Accessor.FieldAccessor,3,0,0,0,1,0,1,0,1,0
+Apache Avro,org.apache.avro.util.internal,Accessor.FieldAccessor,0,3,0,0,0,1,0,1,0,1
 Apache Avro,org.apache.avro.util.internal,JacksonUtils,481,0,108,0,105,0,59,0,5,0
 Apache Avro,org.apache.avro.util.internal,Accessor.ResolvingGrammarGeneratorAccessor,3,0,0,0,1,0,1,0,1,0
 Apache Avro,org.apache.avro.util.internal,Accessor.EncoderFactoryAccessor,3,0,0,0,1,0,1,0,1,0
-Apache Avro,org.apache.avro.util.internal,Accessor,79,5,9,1,27,3,16,1,11,1
+Apache Avro,org.apache.avro.util.internal,Accessor,74,10,8,2,24,6,15,2,10,2
 Apache Avro,org.apache.avro.util.internal,Accessor.JsonPropertiesAccessor,0,3,0,0,0,1,0,1,0,1
 Apache Avro,org.apache.avro.io.parsing,Symbol.DefaultStartAction,7,0,0,0,3,0,1,0,1,0
 Apache Avro,org.apache.avro.io.parsing,Symbol.FieldAdjustAction,13,0,0,0,5,0,1,0,1,0
 Apache Avro,org.apache.avro.io.parsing,Symbol.UnionAdjustAction,21,0,0,0,5,0,2,0,2,0
 Apache Avro,org.apache.avro.io.parsing,Symbol.SkipAction,17,0,0,0,4,0,2,0,2,0
 Apache Avro,org.apache.avro.io.parsing,ValidatingGrammarGenerator,225,0,21,0,37,0,20,0,3,0
-Apache Avro,org.apache.avro.io.parsing,JsonGrammarGenerator,191,0,10,0,25,0,10,0,3,0
+Apache Avro,org.apache.avro.io.parsing,JsonGrammarGenerator,243,0,10,0,34,0,11,0,4,0
 Apache Avro,org.apache.avro.io.parsing,SkipParser,100,0,14,0,25,0,12,0,5,0
 Apache Avro,org.apache.avro.io.parsing,Parser,258,0,28,0,54,0,25,0,11,0
 Apache Avro,org.apache.avro.io.parsing,Symbol.Kind,74,0,0,0,8,0,1,0,1,0

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import org.apache.avro.AvroTypeException;
+import org.apache.avro.io.parsing.Symbol.Kind;
 
 /**
  * Parser is the class that maintains the stack for parsing. This class is used
@@ -50,19 +51,19 @@ public class Parser {
   protected Symbol[] stack;
   protected int pos;
 
-<span class="nc" id="L53">  public Parser(Symbol root, ActionHandler symbolHandler) {</span>
-<span class="nc" id="L54">    this.symbolHandler = symbolHandler;</span>
-<span class="nc" id="L55">    this.stack = new Symbol[5]; // Start small to make sure expansion code works</span>
-<span class="nc" id="L56">    this.stack[0] = root;</span>
-<span class="nc" id="L57">    this.pos = 1;</span>
-<span class="nc" id="L58">  }</span>
+<span class="nc" id="L54">  public Parser(Symbol root, ActionHandler symbolHandler) {</span>
+<span class="nc" id="L55">    this.symbolHandler = symbolHandler;</span>
+<span class="nc" id="L56">    this.stack = new Symbol[5]; // Start small to make sure expansion code works</span>
+<span class="nc" id="L57">    this.stack[0] = root;</span>
+<span class="nc" id="L58">    this.pos = 1;</span>
+<span class="nc" id="L59">  }</span>
 
   /**
    * If there is no sufficient room in the stack, use this expand it.
    */
   private void expandStack() {
-<span class="nc" id="L64">    stack = Arrays.copyOf(stack, stack.length + Math.max(stack.length, 1024));</span>
-<span class="nc" id="L65">  }</span>
+<span class="nc" id="L65">    stack = Arrays.copyOf(stack, stack.length + Math.max(stack.length, 1024));</span>
+<span class="nc" id="L66">  }</span>
 
   /**
    * Recursively replaces the symbol at the top of the stack with its production,
@@ -76,25 +77,25 @@ public class Parser {
    */
   public final Symbol advance(Symbol input) throws IOException {
     for (;;) {
-<span class="nc" id="L79">      Symbol top = stack[--pos];</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">      if (top == input) {</span>
-<span class="nc" id="L81">        return top; // A common case</span>
+<span class="nc" id="L80">      Symbol top = stack[--pos];</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">      if (top == input) {</span>
+<span class="nc" id="L82">        return top; // A common case</span>
       }
 
-<span class="nc" id="L84">      Symbol.Kind k = top.kind;</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">      if (k == Symbol.Kind.IMPLICIT_ACTION) {</span>
-<span class="nc" id="L86">        Symbol result = symbolHandler.doAction(input, top);</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (result != null) {</span>
-<span class="nc" id="L88">          return result;</span>
+<span class="nc" id="L85">      Symbol.Kind k = top.kind;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">      if (k == Symbol.Kind.IMPLICIT_ACTION) {</span>
+<span class="nc" id="L87">        Symbol result = symbolHandler.doAction(input, top);</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (result != null) {</span>
+<span class="nc" id="L89">          return result;</span>
         }
-<span class="nc bnc" id="L90" title="All 2 branches missed.">      } else if (k == Symbol.Kind.TERMINAL) {</span>
-<span class="nc" id="L91">        throw new AvroTypeException(&quot;Attempt to process a &quot; + input + &quot; when a &quot; + top + &quot; was expected.&quot;);</span>
-<span class="nc bnc" id="L92" title="All 4 branches missed.">      } else if (k == Symbol.Kind.REPEATER &amp;&amp; input == ((Symbol.Repeater) top).end) {</span>
-<span class="nc" id="L93">        return input;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">      } else if (k == Symbol.Kind.TERMINAL) {</span>
+<span class="nc" id="L92">        throw new AvroTypeException(&quot;Attempt to process a &quot; + input + &quot; when a &quot; + top + &quot; was expected.&quot;);</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">      } else if (k == Symbol.Kind.REPEATER &amp;&amp; input == ((Symbol.Repeater) top).end) {</span>
+<span class="nc" id="L94">        return input;</span>
       } else {
-<span class="nc" id="L95">        pushProduction(top);</span>
+<span class="nc" id="L96">        pushProduction(top);</span>
       }
-<span class="nc" id="L97">    }</span>
+<span class="nc" id="L98">    }</span>
   }
 
   /**
@@ -105,34 +106,34 @@ public class Parser {
    * @throws IOException
    */
   public final void processImplicitActions() throws IOException {
-<span class="nc bnc" id="L108" title="All 2 branches missed.">    while (pos &gt; 1) {</span>
-<span class="nc" id="L109">      Symbol top = stack[pos - 1];</span>
-<span class="nc bnc" id="L110" title="All 2 branches missed.">      if (top.kind == Symbol.Kind.IMPLICIT_ACTION) {</span>
-<span class="nc" id="L111">        pos--;</span>
-<span class="nc" id="L112">        symbolHandler.doAction(null, top);</span>
-<span class="nc bnc" id="L113" title="All 2 branches missed.">      } else if (top.kind != Symbol.Kind.TERMINAL) {</span>
-<span class="nc" id="L114">        pos--;</span>
-<span class="nc" id="L115">        pushProduction(top);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    while (pos &gt; 1) {</span>
+<span class="nc" id="L110">      Symbol top = stack[pos - 1];</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">      if (top.kind == Symbol.Kind.IMPLICIT_ACTION) {</span>
+<span class="nc" id="L112">        pos--;</span>
+<span class="nc" id="L113">        symbolHandler.doAction(null, top);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">      } else if (top.kind != Symbol.Kind.TERMINAL) {</span>
+<span class="nc" id="L115">        pos--;</span>
+<span class="nc" id="L116">        pushProduction(top);</span>
       } else {
         break;
       }
-<span class="nc" id="L119">    }</span>
-<span class="nc" id="L120">  }</span>
+<span class="nc" id="L120">    }</span>
+<span class="nc" id="L121">  }</span>
 
   /**
    * Performs any &quot;trailing&quot; implicit actions at the top the stack.
    */
   public final void processTrailingImplicitActions() throws IOException {
-<span class="nc bnc" id="L126" title="All 2 branches missed.">    while (pos &gt;= 1) {</span>
-<span class="nc" id="L127">      Symbol top = stack[pos - 1];</span>
-<span class="nc bnc" id="L128" title="All 4 branches missed.">      if (top.kind == Symbol.Kind.IMPLICIT_ACTION &amp;&amp; ((Symbol.ImplicitAction) top).isTrailing) {</span>
-<span class="nc" id="L129">        pos--;</span>
-<span class="nc" id="L130">        symbolHandler.doAction(null, top);</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">    while (pos &gt;= 1) {</span>
+<span class="nc" id="L128">      Symbol top = stack[pos - 1];</span>
+<span class="nc bnc" id="L129" title="All 4 branches missed.">      if (top.kind == Symbol.Kind.IMPLICIT_ACTION &amp;&amp; ((Symbol.ImplicitAction) top).isTrailing) {</span>
+<span class="nc" id="L130">        pos--;</span>
+<span class="nc" id="L131">        symbolHandler.doAction(null, top);</span>
       } else {
         break;
       }
-<span class="nc" id="L134">    }</span>
-<span class="nc" id="L135">  }</span>
+<span class="nc" id="L135">    }</span>
+<span class="nc" id="L136">  }</span>
 
   /**
    * Pushes the production for the given symbol &lt;tt&gt;sym&lt;/tt&gt;. If &lt;tt&gt;sym&lt;/tt&gt; is a
@@ -142,47 +143,47 @@ public class Parser {
    * @param sym
    */
   public final void pushProduction(Symbol sym) {
-<span class="nc" id="L145">    Symbol[] p = sym.production;</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">    while (pos + p.length &gt; stack.length) {</span>
-<span class="nc" id="L147">      expandStack();</span>
+<span class="nc" id="L146">    Symbol[] p = sym.production;</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">    while (pos + p.length &gt; stack.length) {</span>
+<span class="nc" id="L148">      expandStack();</span>
     }
-<span class="nc" id="L149">    System.arraycopy(p, 0, stack, pos, p.length);</span>
-<span class="nc" id="L150">    pos += p.length;</span>
-<span class="nc" id="L151">  }</span>
+<span class="nc" id="L150">    System.arraycopy(p, 0, stack, pos, p.length);</span>
+<span class="nc" id="L151">    pos += p.length;</span>
+<span class="nc" id="L152">  }</span>
 
   /**
    * Pops and returns the top symbol from the stack.
    */
   public Symbol popSymbol() {
-<span class="nc" id="L157">    return stack[--pos];</span>
+<span class="nc" id="L158">    return stack[--pos];</span>
   }
 
   /**
    * Returns the top symbol from the stack.
    */
   public Symbol topSymbol() {
-<span class="nc" id="L164">    return stack[pos - 1];</span>
+<span class="nc" id="L165">    return stack[pos - 1];</span>
   }
 
   /**
    * Pushes &lt;tt&gt;sym&lt;/tt&gt; on to the stack.
    */
   public void pushSymbol(Symbol sym) {
-<span class="nc bnc" id="L171" title="All 2 branches missed.">    if (pos == stack.length) {</span>
-<span class="nc" id="L172">      expandStack();</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">    if (pos == stack.length) {</span>
+<span class="nc" id="L173">      expandStack();</span>
     }
-<span class="nc" id="L174">    stack[pos++] = sym;</span>
-<span class="nc" id="L175">  }</span>
+<span class="nc" id="L175">    stack[pos++] = sym;</span>
+<span class="nc" id="L176">  }</span>
 
   /**
    * Returns the depth of the stack.
    */
   public int depth() {
-<span class="nc" id="L181">    return pos;</span>
+<span class="nc" id="L182">    return pos;</span>
   }
 
   public void reset() {
-<span class="nc" id="L185">    pos = 1;</span>
-<span class="nc" id="L186">  }</span>
+<span class="nc" id="L186">    pos = 1;</span>
+<span class="nc" id="L187">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

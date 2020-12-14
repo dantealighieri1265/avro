@@ -17,25 +17,28 @@
  */
 package org.apache.avro.io.parsing;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.avro.Schema;
 import org.apache.avro.Schema.Field;
+import org.apache.avro.Schema.Type;
 
 /**
  * The class that generates a grammar suitable to parse Avro data in JSON
  * format.
  */
 
-<span class="nc" id="L31">public class JsonGrammarGenerator extends ValidatingGrammarGenerator {</span>
+<span class="nc" id="L34">public class JsonGrammarGenerator extends ValidatingGrammarGenerator {</span>
   /**
    * Returns the non-terminal that is the start symbol for the grammar for the
    * grammar for the given schema &lt;tt&gt;sc&lt;/tt&gt;.
    */
   @Override
   public Symbol generate(Schema schema) {
-<span class="nc" id="L38">    return Symbol.root(generate(schema, new HashMap&lt;&gt;()));</span>
+<span class="nc" id="L41">    return Symbol.root(generate(schema, new HashMap&lt;&gt;()));</span>
   }
 
   /**
@@ -50,7 +53,7 @@ import org.apache.avro.Schema.Field;
    */
   @Override
   public Symbol generate(Schema sc, Map&lt;LitS, Symbol&gt; seen) {
-<span class="nc bnc" id="L53" title="All 6 branches missed.">    switch (sc.getType()) {</span>
+<span class="nc bnc" id="L56" title="All 6 branches missed.">    switch (sc.getType()) {</span>
     case NULL:
     case BOOLEAN:
     case INT:
@@ -61,39 +64,49 @@ import org.apache.avro.Schema.Field;
     case BYTES:
     case FIXED:
     case UNION:
-<span class="nc" id="L64">      return super.generate(sc, seen);</span>
+<span class="nc" id="L67">      return super.generate(sc, seen);</span>
     case ENUM:
-<span class="nc" id="L66">      return Symbol.seq(Symbol.enumLabelsAction(sc.getEnumSymbols()), Symbol.ENUM);</span>
+<span class="nc" id="L69">      return Symbol.seq(Symbol.enumLabelsAction(sc.getEnumSymbols()), Symbol.ENUM);</span>
     case ARRAY:
-<span class="nc" id="L68">      return Symbol.seq(Symbol.repeat(Symbol.ARRAY_END, Symbol.ITEM_END, generate(sc.getElementType(), seen)),</span>
+<span class="nc" id="L71">      return Symbol.seq(Symbol.repeat(Symbol.ARRAY_END, Symbol.ITEM_END, generate(sc.getElementType(), seen)),</span>
           Symbol.ARRAY_START);
     case MAP:
-<span class="nc" id="L71">      return Symbol.seq(Symbol.repeat(Symbol.MAP_END, Symbol.ITEM_END, generate(sc.getValueType(), seen),</span>
+<span class="nc" id="L74">      return Symbol.seq(Symbol.repeat(Symbol.MAP_END, Symbol.ITEM_END, generate(sc.getValueType(), seen),</span>
           Symbol.MAP_KEY_MARKER, Symbol.STRING), Symbol.MAP_START);
     case RECORD: {
-<span class="nc" id="L74">      LitS wsc = new LitS(sc);</span>
-<span class="nc" id="L75">      Symbol rresult = seen.get(wsc);</span>
-<span class="nc bnc" id="L76" title="All 2 branches missed.">      if (rresult == null) {</span>
-<span class="nc" id="L77">        Symbol[] production = new Symbol[sc.getFields().size() * 3 + 2];</span>
-<span class="nc" id="L78">        rresult = Symbol.seq(production);</span>
-<span class="nc" id="L79">        seen.put(wsc, rresult);</span>
+<span class="nc" id="L77">      LitS wsc = new LitS(sc);</span>
+<span class="nc" id="L78">      Symbol rresult = seen.get(wsc);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">      if (rresult == null) {</span>
+<span class="nc" id="L80">        Symbol[] production = new Symbol[sc.getFields().size() * 3 + 2];</span>
+<span class="nc" id="L81">        rresult = Symbol.seq(production);</span>
+<span class="nc" id="L82">        seen.put(wsc, rresult);</span>
 
-<span class="nc" id="L81">        int i = production.length;</span>
-<span class="nc" id="L82">        int n = 0;</span>
-<span class="nc" id="L83">        production[--i] = Symbol.RECORD_START;</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">        for (Field f : sc.getFields()) {</span>
-<span class="nc" id="L85">          production[--i] = Symbol.fieldAdjustAction(n, f.name(), f.aliases());</span>
-<span class="nc" id="L86">          production[--i] = generate(f.schema(), seen);</span>
-<span class="nc" id="L87">          production[--i] = Symbol.FIELD_END;</span>
-<span class="nc" id="L88">          n++;</span>
-<span class="nc" id="L89">        }</span>
-<span class="nc" id="L90">        production[--i] = Symbol.RECORD_END;</span>
+<span class="nc" id="L84">        int i = production.length;</span>
+<span class="nc" id="L85">        int n = 0;</span>
+<span class="nc" id="L86">        production[--i] = Symbol.RECORD_START;</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        for (Field f : sc.getFields()) {</span>
+<span class="nc" id="L88">          production[--i] = Symbol.fieldAdjustAction(n, f.name(), f.aliases());</span>
+<span class="nc" id="L89">          production[--i] = generate(f.schema(), seen);</span>
+<span class="nc" id="L90">          production[--i] = Symbol.FIELD_END;</span>
+<span class="nc" id="L91">          n++;</span>
+<span class="nc" id="L92">        }</span>
+<span class="nc" id="L93">        production[--i] = Symbol.RECORD_END;</span>
       }
-<span class="nc" id="L92">      return rresult;</span>
+<span class="nc" id="L95">      return rresult;</span>
     }
     default:
-<span class="nc" id="L95">      throw new RuntimeException(&quot;Unexpected schema type&quot;);</span>
+<span class="nc" id="L98">      throw new RuntimeException(&quot;Unexpected schema type&quot;);</span>
     }
   }
+  public static void main(String[] args) {
+<span class="nc" id="L102">	Schema sc = Schema.create(Type.INT);</span>
+<span class="nc" id="L103">	List&lt;Schema.Field&gt; l = new ArrayList&lt;Schema.Field&gt;();</span>
+<span class="nc" id="L104">	l.add(new Field(&quot;int&quot;, Schema.create(Type.INT)));</span>
+<span class="nc" id="L105">	Schema sc1 = Schema.createRecord(&quot;RC&quot;, &quot;Doc&quot;, &quot;NS&quot;, false, l);</span>
+<span class="nc" id="L106">	JsonGrammarGenerator jgg = new JsonGrammarGenerator();</span>
+<span class="nc" id="L107">	Symbol sy = jgg.generate(sc);</span>
+<span class="nc" id="L108">	Symbol sym = jgg.generate(sc1);</span>
+<span class="nc" id="L109">	System.out.printf(&quot;%s %s\n&quot;,sy.kind, sym.kind);</span>
+<span class="nc" id="L110">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

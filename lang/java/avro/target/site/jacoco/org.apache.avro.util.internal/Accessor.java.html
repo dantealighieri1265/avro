@@ -35,7 +35,7 @@ import com.fasterxml.jackson.databind.JsonNode;
     protected abstract void addProp(JsonProperties props, String name, JsonNode value);
   }
 
-<span class="nc" id="L38">  public abstract static class FieldAccessor {</span>
+<span class="fc" id="L38">  public abstract static class FieldAccessor {</span>
     protected abstract JsonNode defaultValue(Field field);
 
     protected abstract Field createField(String name, Schema schema, String doc, JsonNode defaultValue,
@@ -66,10 +66,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 <span class="fc" id="L66">  }</span>
 
   public static void setAccessor(FieldAccessor accessor) {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">    if (fieldAccessor != null)</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">    if (fieldAccessor != null)</span>
 <span class="nc" id="L70">      throw new IllegalStateException(&quot;FieldAccessor already initialized&quot;);</span>
-<span class="nc" id="L71">    fieldAccessor = accessor;</span>
-<span class="nc" id="L72">  }</span>
+<span class="fc" id="L71">    fieldAccessor = accessor;</span>
+<span class="fc" id="L72">  }</span>
 
   private static FieldAccessor fieldAccessor() {
 <span class="nc bnc" id="L75" title="All 2 branches missed.">    if (fieldAccessor == null)</span>

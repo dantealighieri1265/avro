@@ -31,7 +31,6 @@ public class TestCompareBytes {
 			//Mutation
 			{new CompareBytesEntity(1, 4, 1, 3, test1.getBytes(), test2.getBytes()), 1},
 			{new CompareBytesEntity(1, 3, 1, 4, test1.getBytes(), test3.getBytes()), -1},
-			
 		});
 	}
 	
