@@ -1213,7 +1213,7 @@ public class GenericData {
    *
    * @param schema the schema of the value to deep copy.
    * @param value  the value to deep copy.
-   * @return a deep copy of the given value.
+   * @return a deep copy of the given value. 
    */
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public <T> T deepCopy(Schema schema, T value) {

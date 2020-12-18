@@ -62,6 +62,7 @@
 				              <param>org.apache.avro.io.BinaryData</param>
 				              <param>org.apache.avro.specific.SpecificData</param>
 				              <param>org.apache.avro.specific.SpecificData</param>
+                      <param>org.apache.avro.generic.GenericData</param>
 				           
 				            </targetClasses>
 				            <targetTests>
@@ -69,6 +70,7 @@
 				              <param>org.apache.avro.io.TestCompareBytes</param>
 				              <param>org.apache.avro.specific.TestGetSchema</param>
 				              <param>org.apache.avro.specific.TestGetClass</param>
+                      <param>org.apache.avro.generic.TestDeepCopy</param>
 				            </targetTests>
                         </configuration>
                         <executions>

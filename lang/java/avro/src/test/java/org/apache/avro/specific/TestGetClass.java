@@ -16,9 +16,13 @@ import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericData.StringType;
 import org.apache.avro.specific.OuterClassForTest.InnerClassForTest;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+import org.mockito.Mockito;
 
 @RunWith(Parameterized.class)
 public class TestGetClass {
@@ -28,6 +32,9 @@ public class TestGetClass {
 	Collection<String> array = new LinkedList<String>();
 	Map<String, String> map = new HashMap<>();
 	Map<Integer, Integer> mapInt = new HashMap<>();
+	
+	@Rule
+	public MockitoRule mockitoRule = MockitoJUnit.rule();
 
 	@Parameterized.Parameters
 	public static Collection<Object[]> GetClassParameters() throws Exception {
@@ -55,6 +62,7 @@ public class TestGetClass {
 			{ Schema.Type.UNION, Integer.class, true, true },
 			{ Schema.Type.ENUM, null, true, false },
 			{ Schema.Type.ENUM, InnerClassForTest.class, false, true },//nested class
+			{ Schema.Type.ENUM, null, true, true}//name=null, Mockito spy
 		});
 	}
 
@@ -84,11 +92,17 @@ public class TestGetClass {
 				List<String> val = new ArrayList<String>();
 				val.add("test"); 
 				schema = Schema.createEnum("InnerClassForTest", "", "org.apache.avro.specific.OuterClassForTest", val);
+			}else {
+				List<String> val = new ArrayList<String>();
+				val.add("test"); 
+				schema = Schema.createEnum("SpecificData", "", "", val);
+				schema = Mockito.spy(schema);
+				Mockito.when(schema.getFullName()).thenReturn(null);
 			} 
 		}else if(type == Type.STRING & flag){
 			Schema sc = Schema.create(type);
 			GenericData.setStringType(sc, StringType.String);
-			schema = sc;
+			schema = sc; 
 		}else if(type == Type.UNION){ 
 			if(!flag & !flag2) {
 				List<Schema> val = new ArrayList<Schema>();

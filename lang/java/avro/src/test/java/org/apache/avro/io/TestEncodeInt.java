@@ -50,7 +50,6 @@ public class TestEncodeInt {
 		} catch (ArrayIndexOutOfBoundsException exception) {
 			assertEquals(expectedResult, exception.getClass());
 		}
-		System.out.println('\n');
 	}
 
 }

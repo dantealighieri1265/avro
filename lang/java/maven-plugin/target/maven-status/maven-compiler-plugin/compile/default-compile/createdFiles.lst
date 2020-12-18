@@ -1,6 +1,0 @@
-org/apache/avro/mojo/SchemaMojo.class
-org/apache/avro/mojo/InduceMojo.class
-org/apache/avro/mojo/ProtocolMojo.class
-org/apache/avro/mojo/AbstractAvroMojo.class
-org/apache/avro/mojo/IDLProtocolMojo.class
-org/apache/avro/mojo/HelpMojo.class
