@@ -3,12 +3,12 @@ package org.apache.avro.generic.entity;
 import org.apache.avro.Schema;
 import org.apache.avro.Schema.Type;
 
-public class DeepCopyTestEntity<T> {
+public class DeepCopyRawTestEntity<T> {
 	private Type type;
 	private T value;
 	private Schema schema;
 	
-	public DeepCopyTestEntity(Type type, T value) {
+	public DeepCopyRawTestEntity(Type type, T value) {
 		this.type = type;
 		this.value = value;
 	}

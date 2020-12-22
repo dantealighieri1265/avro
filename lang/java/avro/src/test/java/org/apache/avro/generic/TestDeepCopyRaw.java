@@ -12,7 +12,7 @@ import org.apache.avro.Schema;
 import org.apache.avro.Schema.Field;
 import org.apache.avro.Schema.Type;
 import org.apache.avro.generic.GenericData.EnumSymbol;
-import org.apache.avro.generic.entity.DeepCopyTestEntity;
+import org.apache.avro.generic.entity.DeepCopyRawTestEntity;
 import org.apache.avro.generic.entity.TestEntity;
 import org.apache.avro.reflect.ReflectData;
 import org.apache.avro.util.Utf8;
@@ -22,13 +22,13 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 
 @RunWith(Parameterized.class)
-public class TestDeepCopy<T> {
+public class TestDeepCopyRaw<T> {
 
-	private DeepCopyTestEntity<T> entity;
+	private DeepCopyRawTestEntity<T> entity;
 	private T expectedValue;
 	private static GenericData genericData = new GenericData();
-	static TestEntity user = new TestEntity(0, 0);
-    static Schema schema = ReflectData.get().getSchema(user.getClass());
+	static TestEntity testEntity = new TestEntity(0, 0);
+    static Schema schema = ReflectData.get().getSchema(testEntity.getClass());
 	static GenericRecord avroRecord = new GenericData.Record(schema);
 	public enum TestEnum{
 		FIRST, SECOND
@@ -36,7 +36,8 @@ public class TestDeepCopy<T> {
 	static TestEnum enum_ = TestEnum.FIRST;
 
 	@Parameterized.Parameters
-	public static Collection<Object[]> DeepCopyParameters() throws Exception {
+	public static Collection<Object[]> DeepCopyRawParameters() throws Exception {
+		// Parameters for tests
 		Integer integer = Integer.valueOf(0);
 		Float float_ = Float.valueOf(0);
 		Long long_ = Long.valueOf(0);
@@ -55,26 +56,26 @@ public class TestDeepCopy<T> {
 		return Arrays.asList(new Object[][] {
 
 			// Suite minimale
-			{ new DeepCopyTestEntity<>(Schema.Type.INT, integer), integer}, 
-			{ new DeepCopyTestEntity<>(Schema.Type.INT, null), null},
-			{ new DeepCopyTestEntity<>(Schema.Type.STRING, integer), new Utf8(String.valueOf(integer))}, 
-			{ new DeepCopyTestEntity<>(Schema.Type.FLOAT, float_), float_},
-			{ new DeepCopyTestEntity<>(Schema.Type.BOOLEAN, true), true},
-			{ new DeepCopyTestEntity<>(Schema.Type.LONG, long_), long_},
-			{ new DeepCopyTestEntity<>(Schema.Type.DOUBLE, double_), double_},
-			{ new DeepCopyTestEntity<>(Schema.Type.NULL, double_), null},
-			{ new DeepCopyTestEntity<>(Schema.Type.ARRAY, array), array},
-			{ new DeepCopyTestEntity<>(Schema.Type.BYTES, buffer), buffer},
-			{ new DeepCopyTestEntity<>(Schema.Type.ENUM, enum_), null},// expected value in constructor
-			{ new DeepCopyTestEntity<>(Schema.Type.FIXED, null), null},// value & expected value in constructor
-			{ new DeepCopyTestEntity<>(Schema.Type.MAP, map), map},
-			{ new DeepCopyTestEntity<>(Schema.Type.RECORD, avroRecord), avroRecord},
-			{ new DeepCopyTestEntity<>(Schema.Type.UNION, integer), integer},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.INT, integer), integer}, 
+			{ new DeepCopyRawTestEntity<>(Schema.Type.INT, null), null},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.STRING, integer), new Utf8(String.valueOf(integer))}, 
+			{ new DeepCopyRawTestEntity<>(Schema.Type.FLOAT, float_), float_},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.BOOLEAN, true), true},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.LONG, long_), long_},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.DOUBLE, double_), double_},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.NULL, double_), null},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.ARRAY, array), array},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.BYTES, buffer), buffer},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.ENUM, enum_), null},// expected value in constructor
+			{ new DeepCopyRawTestEntity<>(Schema.Type.FIXED, null), null},// value & expected value in constructor
+			{ new DeepCopyRawTestEntity<>(Schema.Type.MAP, map), map},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.RECORD, avroRecord), avroRecord},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.UNION, integer), integer},
 		});
 	}
 	
 	@SuppressWarnings("unchecked")
-	public TestDeepCopy(DeepCopyTestEntity<T> entity, T expectedValue) {
+	public TestDeepCopyRaw(DeepCopyRawTestEntity<T> entity, T expectedValue) {
 		Schema schema = null;
 		if(entity.getType() == Type.ARRAY) {
 			schema = Schema.createArray(Schema.create(Type.INT));

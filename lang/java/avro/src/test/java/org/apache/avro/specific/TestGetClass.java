@@ -80,20 +80,17 @@ public class TestGetClass {
 		}else if(type == Type.FIXED){
 			schema = Schema.createFixed("SpecificData", "", "org.apache.avro.specific", 10);
 		}else if(type == Type.ENUM){
+			List<String> val = new ArrayList<String>();
 			if(!flag & !flag2) {
-				List<String> val = new ArrayList<String>();
 				val.add("test"); 
 				schema = Schema.createEnum("SpecificData", "", "org.apache.avro.specific", val);
 			}else if (flag & !flag2) {
-				List<String> val = new ArrayList<String>();
 				val.add("test"); 
 				schema = Schema.createEnum("SpecificData", "", "", val);
 			}else if (!flag & flag2) {
-				List<String> val = new ArrayList<String>();
 				val.add("test"); 
 				schema = Schema.createEnum("InnerClassForTest", "", "org.apache.avro.specific.OuterClassForTest", val);
 			}else {
-				List<String> val = new ArrayList<String>();
 				val.add("test"); 
 				schema = Schema.createEnum("SpecificData", "", "", val);
 				schema = Mockito.spy(schema);
@@ -104,22 +101,19 @@ public class TestGetClass {
 			GenericData.setStringType(sc, StringType.String);
 			schema = sc; 
 		}else if(type == Type.UNION){ 
+			List<Schema> val = new ArrayList<Schema>();
 			if(!flag & !flag2) {
-				List<Schema> val = new ArrayList<Schema>();
 				val.add(Schema.create(Type.INT)); 
 				schema = Schema.createUnion(val);
 			}else if (flag & !flag2) {
-				List<Schema> val = new ArrayList<Schema>();
 				val.add(Schema.create(Type.NULL));
 				val.add(Schema.create(Type.INT)); 
 				schema = Schema.createUnion(val);
 			}else if (!flag & flag2) { 
-				List<Schema> val = new ArrayList<Schema>();
 				val.add(Schema.create(Type.INT)); 
 				val.add(Schema.create(Type.STRING));
 				schema = Schema.createUnion(val);
 			}else {
-				List<Schema> val = new ArrayList<Schema>();
 				val.add(Schema.create(Type.INT)); 
 				val.add(Schema.create(Type.NULL));
 				schema = Schema.createUnion(val);
@@ -135,11 +129,7 @@ public class TestGetClass {
 	@Test
 	public void testGetSchema() throws IOException, NoSuchFieldException, SecurityException {
 
-		try {
-			Assert.assertEquals(expectedResult, SpecificData.get().getClass(schema));
-		} catch (Exception e) {
-			Assert.assertEquals(expectedResult, e.getClass());
-		}
+		Assert.assertEquals(expectedResult, SpecificData.get().getClass(schema));
 
 	}
 
