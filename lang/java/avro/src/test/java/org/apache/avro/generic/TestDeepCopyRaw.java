@@ -56,8 +56,10 @@ public class TestDeepCopyRaw<T> {
 		return Arrays.asList(new Object[][] {
 
 			// Suite minimale
+			{ new DeepCopyRawTestEntity<>(null, integer), NullPointerException.class },
 			{ new DeepCopyRawTestEntity<>(Schema.Type.INT, integer), integer}, 
 			{ new DeepCopyRawTestEntity<>(Schema.Type.INT, null), null},
+			{ new DeepCopyRawTestEntity<>(Schema.Type.ARRAY, map), ClassCastException.class},
 			{ new DeepCopyRawTestEntity<>(Schema.Type.STRING, integer), new Utf8(String.valueOf(integer))}, 
 			{ new DeepCopyRawTestEntity<>(Schema.Type.FLOAT, float_), float_},
 			{ new DeepCopyRawTestEntity<>(Schema.Type.BOOLEAN, true), true},
@@ -102,6 +104,8 @@ public class TestDeepCopyRaw<T> {
 			List<Schema> val = new ArrayList<Schema>();
 			val.add(Schema.create(Type.INT)); 
 			schema = Schema.createUnion(val);
+		}else if (entity.getType() == null) {
+			schema = null;
 		}else {
 			schema = Schema.create(entity.getType());
 		}
@@ -112,16 +116,20 @@ public class TestDeepCopyRaw<T> {
 	
 	@Test
 	public void test() {
-		assertEquals(expectedValue, genericData.deepCopy(entity.getSchema(), entity.getValue()));
-		if(entity.getType() == Type.RECORD) {// mutation killing on setField
-			Object newRecord = genericData.newRecord(null, entity.getSchema());
-			Object oldState = genericData.getRecordState(avroRecord, entity.getSchema());
-			for (Field f : entity.getSchema().getFields()) {
-		        int pos = f.pos();
-		        String name = f.name();
-		        Object newValue = genericData.deepCopy(f.schema(), genericData.getField(avroRecord, name, pos, oldState));
-		        Mockito.verify(genericData).setField(newRecord, name, pos, newValue);
+		try {
+			assertEquals(expectedValue, genericData.deepCopy(entity.getSchema(), entity.getValue()));
+			if(entity.getType() == Type.RECORD) {// mutation killing on setField
+				Object newRecord = genericData.newRecord(null, entity.getSchema());
+				Object oldState = genericData.getRecordState(avroRecord, entity.getSchema());
+				for (Field f : entity.getSchema().getFields()) {
+			        int pos = f.pos();
+			        String name = f.name();
+			        Object newValue = genericData.deepCopy(f.schema(), genericData.getField(avroRecord, name, pos, oldState));
+			        Mockito.verify(genericData).setField(newRecord, name, pos, newValue);
+				}
 			}
+		} catch (Exception e) {
+			assertEquals(expectedValue, e.getClass());
 		}
 	}
 }

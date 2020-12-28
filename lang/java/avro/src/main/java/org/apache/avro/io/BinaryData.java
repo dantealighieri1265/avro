@@ -192,17 +192,6 @@ public class BinaryData {
     }
     return l1 - l2;
   }
-  
-
-  public static void main(String[] args) {
-	  byte[] b = "ciao".getBytes();
-	  byte[] b2 = "ciao".getBytes();
-	  
-	  System.out.println(compareBytes(b, 0, 0, b2, 0, 0));
-//	  System.out.println(BitSet.valueOf(b));
-//	  encodeInt(2*128*128*128*128, b, 0);
-//	  System.out.println(BitSet.valueOf(b).hashCode());//{7, 15, 23, 31, 34}
-  }
 
   private static class HashData {
     private final BinaryDecoder decoder;

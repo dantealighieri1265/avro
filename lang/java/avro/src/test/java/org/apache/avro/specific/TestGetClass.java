@@ -41,6 +41,7 @@ public class TestGetClass {
 		return Arrays.asList(new Object[][] {
 
 			// Suite minimale
+			{ null, NullPointerException.class, false, false },
 			{ Schema.Type.INT, Integer.TYPE, false, false }, 
 			{ Schema.Type.BOOLEAN, Boolean.TYPE, false, false },
 			{ Schema.Type.NULL, Void.TYPE, false, false }, 
@@ -118,6 +119,8 @@ public class TestGetClass {
 				val.add(Schema.create(Type.NULL));
 				schema = Schema.createUnion(val);
 			}
+		}else if (type == null) {
+			schema = null;
 		}else {
 			schema = Schema.create(type);
 		}
@@ -129,7 +132,11 @@ public class TestGetClass {
 	@Test
 	public void testGetSchema() throws IOException, NoSuchFieldException, SecurityException {
 
-		Assert.assertEquals(expectedResult, SpecificData.get().getClass(schema));
+		try {
+			Assert.assertEquals(expectedResult, SpecificData.get().getClass(schema));
+		} catch (Exception e) {
+			Assert.assertEquals(expectedResult, e.getClass());
+		}
 
 	}
 
